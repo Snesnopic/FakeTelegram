@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9DDA59002B023589005ED1CA /* FakeTelegramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDA58FF2B023589005ED1CA /* FakeTelegramApp.swift */; };
-		9DDA59022B023589005ED1CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDA59012B023589005ED1CA /* ContentView.swift */; };
+		9DDA59022B023589005ED1CA /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDA59012B023589005ED1CA /* ChatListView.swift */; };
 		9DDA59042B02358A005ED1CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DDA59032B02358A005ED1CA /* Assets.xcassets */; };
 		9DDA59072B02358A005ED1CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DDA59062B02358A005ED1CA /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		9DDA58FC2B023589005ED1CA /* FakeTelegram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeTelegram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DDA58FF2B023589005ED1CA /* FakeTelegramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTelegramApp.swift; sourceTree = "<group>"; };
-		9DDA59012B023589005ED1CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9DDA59012B023589005ED1CA /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		9DDA59032B02358A005ED1CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DDA59062B02358A005ED1CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				9DDA58FF2B023589005ED1CA /* FakeTelegramApp.swift */,
-				9DDA59012B023589005ED1CA /* ContentView.swift */,
+				9DDA59012B023589005ED1CA /* ChatListView.swift */,
 				9DDA59032B02358A005ED1CA /* Assets.xcassets */,
 				9DDA59052B02358A005ED1CA /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DDA59022B023589005ED1CA /* ContentView.swift in Sources */,
+				9DDA59022B023589005ED1CA /* ChatListView.swift in Sources */,
 				9DDA59002B023589005ED1CA /* FakeTelegramApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

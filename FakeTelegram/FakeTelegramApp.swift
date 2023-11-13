@@ -10,8 +10,13 @@ import SwiftUI
 @main
 struct FakeTelegramApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        WindowGroup{
+            TabView{
+                ChatListView().badge("!").tabItem { Label("Contacts",systemImage: "person.circle.fill") }
+                ChatListView().badge(2).tabItem { Label("Chat",systemImage: "bubble.left.and.bubble.right.fill") }
+                ChatListView().tabItem { Label("Settings",systemImage: "gear") }
+            }
         }
+        
     }
 }
