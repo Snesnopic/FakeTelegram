@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Contact{
+class Contact: Identifiable{
     var chatType:ChatTypeEnum
     var name:String
     var image:String?
@@ -19,5 +19,15 @@ class Contact{
         self.image = image
         self.sentMessages = sentMessages
         self.receivedMessages = receivedMessages
+    }
+    func getLastMessage() -> Message {
+        if(sentMessages.isEmpty && receivedMessages.isEmpty) {
+            return Message(message: "", date: Date())
+        }
+        else {
+            var allMessages = sentMessages + receivedMessages
+            allMessages.sort(){$0.date > $1.date}
+            return allMessages[0]
+        }
     }
 }
