@@ -13,4 +13,9 @@ class Message{
         self.message = message
         self.date = date
     }
+    func getFormattedDate() -> String {
+        var dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date)
+    }
 }
