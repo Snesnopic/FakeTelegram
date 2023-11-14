@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D7D8C1E2B035EFA008F9299 /* ChatTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */; };
+		9DC7C5D92B0260F400092226 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5D82B0260F400092226 /* Contact.swift */; };
+		9DC7C5DB2B02632600092226 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5DA2B02632600092226 /* Message.swift */; };
+		9DC7C5DD2B026C3E00092226 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5DC2B026C3E00092226 /* Folder.swift */; };
 		9DDA59002B023589005ED1CA /* FakeTelegramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDA58FF2B023589005ED1CA /* FakeTelegramApp.swift */; };
 		9DDA59022B023589005ED1CA /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDA59012B023589005ED1CA /* ChatListView.swift */; };
 		9DDA59042B02358A005ED1CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DDA59032B02358A005ED1CA /* Assets.xcassets */; };
@@ -14,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTypeEnum.swift; sourceTree = "<group>"; };
+		9DC7C5D82B0260F400092226 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		9DC7C5DA2B02632600092226 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		9DC7C5DC2B026C3E00092226 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		9DDA58FC2B023589005ED1CA /* FakeTelegram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeTelegram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DDA58FF2B023589005ED1CA /* FakeTelegramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTelegramApp.swift; sourceTree = "<group>"; };
 		9DDA59012B023589005ED1CA /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
@@ -55,6 +63,10 @@
 				9DDA59012B023589005ED1CA /* ChatListView.swift */,
 				9DDA59032B02358A005ED1CA /* Assets.xcassets */,
 				9DDA59052B02358A005ED1CA /* Preview Content */,
+				9DC7C5D82B0260F400092226 /* Contact.swift */,
+				9DC7C5DA2B02632600092226 /* Message.swift */,
+				9DC7C5DC2B026C3E00092226 /* Folder.swift */,
+				9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */,
 			);
 			path = FakeTelegram;
 			sourceTree = "<group>";
@@ -137,7 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DC7C5D92B0260F400092226 /* Contact.swift in Sources */,
+				9DC7C5DD2B026C3E00092226 /* Folder.swift in Sources */,
+				9DC7C5DB2B02632600092226 /* Message.swift in Sources */,
 				9DDA59022B023589005ED1CA /* ChatListView.swift in Sources */,
+				9D7D8C1E2B035EFA008F9299 /* ChatTypeEnum.swift in Sources */,
 				9DDA59002B023589005ED1CA /* FakeTelegramApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
