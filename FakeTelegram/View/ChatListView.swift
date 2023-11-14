@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-
+var chats:[Contact] = [
+    Contact(unreadMessages: 2, chatType: .personal, name: "Gianluca", messages: [Message(sender: myself,message: "Ciao", date: Date())]),
+    Contact(unreadMessages: 0, chatType: .channel, name: "Meme channel", messages: [Message(sender: "Claudio",message: "Mario Doccia", date: Date())]),
+    Contact(unreadMessages: 4, chatType: .group, name: "Gruppo uscite sabato", messages: [Message(sender: myself,message: "Ciao", date: Date()),Message(sender: "Salvatore",message: "Alle 9 da Cibus", date: Date().addingTimeInterval(1))])]
 struct ChatListView: View {
-    var chats:[Contact] = [
-        Contact(unreadMessages: 2, chatType: .personal, name: "Gianluca", messages: [Message(sender: myself,message: "Ciao", date: Date())]),
-        Contact(unreadMessages: 0, chatType: .channel, name: "Meme channel", messages: [Message(sender: "Claudio",message: "Mario Doccia", date: Date())]),
-        Contact(unreadMessages: 4, chatType: .group, name: "Gruppo uscite sabato", messages: [Message(sender: myself,message: "Ciao", date: Date()),Message(sender: "Salvatore",message: "Alle 9 da Cibus", date: Date().addingTimeInterval(1))])]
+    
     
     @State private var selectedTab = 0
     @State private var searchText = ""
