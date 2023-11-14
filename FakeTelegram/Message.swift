@@ -21,3 +21,4 @@ class Message{
         return dateFormatter.string(from: date)
     }
 }
+let myself:String = "me"
