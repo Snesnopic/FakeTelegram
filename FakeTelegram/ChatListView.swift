@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ChatListView: View {
     var chats:[Contact] = [
-        Contact(chatType: .personal, name: "Gianluca", sentMessages: [Message(message: "Ciao", date: Date())], receivedMessages: [Message(message: "Ciao", date: Date())]),
-        Contact(chatType: .channel, name: "Meme channel", sentMessages: [Message(message: "Ciao", date: Date())], receivedMessages: [Message(message: "Mario Doccia", date: Date())]),
-        Contact(chatType: .group, name: "Gruppo uscite sabato", sentMessages: [Message(message: "Ciao", date: Date())], receivedMessages: [Message(message: "Alle 9 da Cibus", date: Date().addingTimeInterval(1))])]
+        Contact(chatType: .personal, name: "Gianluca", messages: [Message(sender: myself,message: "Ciao", date: Date())]),
+        Contact(chatType: .channel, name: "Meme channel", messages: [Message(sender: "Claudio",message: "Mario Doccia", date: Date())]),
+        Contact(chatType: .group, name: "Gruppo uscite sabato", messages: [Message(sender: myself,message: "Ciao", date: Date()),Message(sender: "Salvatore",message: "Alle 9 da Cibus", date: Date().addingTimeInterval(1))])]
     
     @State private var selectedTab = 0
     @State private var searchText = ""
