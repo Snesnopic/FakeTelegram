@@ -37,7 +37,7 @@ struct ChatListView: View {
                 }
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 .background(.background)
-                .swipeActions {
+                .swipeActions(edge: .trailing) {
                     Button(role: .destructive, action: {}, label: {
                         VStack{
                             Image(systemName: "trash.fill")
@@ -47,8 +47,19 @@ struct ChatListView: View {
                         VStack{
                             Image(systemName: "speaker.slash.fill")
                             Text("Mute")
-                        }})
-                    
+                        }}).tint(.orange)
+                }
+                .swipeActions(edge: .leading){
+                    Button(action: {}, label: {
+                        VStack{
+                            Image(systemName: "message.badge.filled.fill")
+                            Text("Unread")
+                        }}).tint(.blue)
+                    Button(action: {}, label: {
+                        VStack{
+                            Image(systemName: "pin.fill")
+                            Text("Pin")
+                        }}).tint(.green)
                 }
             }.listStyle(.plain)
                 .searchable(text: $searchText)
