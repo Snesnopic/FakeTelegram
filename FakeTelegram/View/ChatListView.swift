@@ -17,15 +17,18 @@ struct ChatListView: View {
     @State private var searchText = ""
     var body: some View {
         NavigationStack{
-            List(chats.sorted(by: {
+            List(chats.filter{
+                chat in
+                return searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || chat.name.lowercased().contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())
+            }.sorted(by: {
                 chat1, chat2 in
                 return chat1.getLastMessage().date > chat2.getLastMessage().date
             })){
                 chat in
-                HStack(alignment: .top){
+                HStack(alignment: .center){
                     Circle().stroke(.primary, lineWidth: 1)
-                        .frame(width: 70, height: 70)
-                        .overlay(Image(systemName: chat.image ?? chat.chatType.defaultImage).font(.system(size: 32)))
+                        .frame(width: 50, height: 50)
+                        .overlay(Image(systemName: chat.image ?? chat.chatType.defaultImage).font(.system(size: 18)))
                     VStack(alignment: .leading){
                         Text(chat.name).bold()
                         if(chat.chatType != .personal){
@@ -36,9 +39,8 @@ struct ChatListView: View {
                     Spacer()
                     VStack (alignment: .trailing){
                         Text("\(chat.getLastMessage().getFormattedDate())")
-                        if(chat.unreadMessages != 0){
-                            Text("\(chat.unreadMessages)").padding(5).foregroundStyle(.background).background(Circle().foregroundStyle(.blue))
-                        }
+                        Text("\(chat.unreadMessages)").padding(5).foregroundStyle(.background).background(Circle().foregroundStyle(chat.unreadMessages != 0 ? .blue :  Color(UIColor.systemBackground)))
+                        
                     }
                 }
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
