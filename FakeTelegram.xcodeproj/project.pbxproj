@@ -40,6 +40,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D7D8C1F2B03A678008F9299 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9DC7C5D82B0260F400092226 /* Contact.swift */,
+				9DC7C5DA2B02632600092226 /* Message.swift */,
+				9DC7C5DC2B026C3E00092226 /* Folder.swift */,
+				9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9D7D8C202B03A68A008F9299 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9DDA58FF2B023589005ED1CA /* FakeTelegramApp.swift */,
+				9DDA59012B023589005ED1CA /* ChatListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9DDA58F32B023589005ED1CA = {
 			isa = PBXGroup;
 			children = (
@@ -59,14 +79,10 @@
 		9DDA58FE2B023589005ED1CA /* FakeTelegram */ = {
 			isa = PBXGroup;
 			children = (
-				9DDA58FF2B023589005ED1CA /* FakeTelegramApp.swift */,
-				9DDA59012B023589005ED1CA /* ChatListView.swift */,
+				9D7D8C202B03A68A008F9299 /* View */,
 				9DDA59032B02358A005ED1CA /* Assets.xcassets */,
 				9DDA59052B02358A005ED1CA /* Preview Content */,
-				9DC7C5D82B0260F400092226 /* Contact.swift */,
-				9DC7C5DA2B02632600092226 /* Message.swift */,
-				9DC7C5DC2B026C3E00092226 /* Folder.swift */,
-				9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */,
+				9D7D8C1F2B03A678008F9299 /* Model */,
 			);
 			path = FakeTelegram;
 			sourceTree = "<group>";
