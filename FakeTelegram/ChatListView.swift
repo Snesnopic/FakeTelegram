@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ChatListView: View {
     var chats:[Contact] = [
-        Contact(chatType: .personal, name: "Gianluca", messages: [Message(sender: myself,message: "Ciao", date: Date())]),
-        Contact(chatType: .channel, name: "Meme channel", messages: [Message(sender: "Claudio",message: "Mario Doccia", date: Date())]),
-        Contact(chatType: .group, name: "Gruppo uscite sabato", messages: [Message(sender: myself,message: "Ciao", date: Date()),Message(sender: "Salvatore",message: "Alle 9 da Cibus", date: Date().addingTimeInterval(1))])]
+        Contact(unreadMessages: 2, chatType: .personal, name: "Gianluca", messages: [Message(sender: myself,message: "Ciao", date: Date())]),
+        Contact(unreadMessages: 0, chatType: .channel, name: "Meme channel", messages: [Message(sender: "Claudio",message: "Mario Doccia", date: Date())]),
+        Contact(unreadMessages: 4, chatType: .group, name: "Gruppo uscite sabato", messages: [Message(sender: myself,message: "Ciao", date: Date()),Message(sender: "Salvatore",message: "Alle 9 da Cibus", date: Date().addingTimeInterval(1))])]
     
     @State private var selectedTab = 0
     @State private var searchText = ""
@@ -28,11 +28,17 @@ struct ChatListView: View {
                         .overlay(Image(systemName: chat.image ?? chat.chatType.defaultImage).font(.system(size: 32)))
                     VStack(alignment: .leading){
                         Text(chat.name).bold()
-                        Text(chat.getLastMessage().message).opacity(0.8)
+                        if(chat.chatType != .personal){
+                            Text(chat.getLastMessage().sender)
+                        }
+                        Text(chat.getLastMessage().message).opacity(0.4)
                     }
                     Spacer()
-                    VStack {
+                    VStack (alignment: .trailing){
                         Text("\(chat.getLastMessage().getFormattedDate())")
+                        if(chat.unreadMessages != 0){
+                            Text("\(chat.unreadMessages)").padding(5).foregroundStyle(.background).background(Circle().foregroundStyle(.blue))
+                        }
                     }
                 }
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
