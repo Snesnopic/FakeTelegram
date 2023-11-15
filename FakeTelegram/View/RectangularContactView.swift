@@ -19,9 +19,14 @@ struct RectangularContactView: View {
                 }
                 Text(chat.getLastMessage().message).opacity(0.4)
             }
-            Spacer()
+            Spacer(minLength: 3)
             VStack (alignment: .trailing){
-                Text("\(chat.getLastMessage().getFormattedDate())").opacity(0.5)
+                HStack {
+                    if chat.chatType != .channel && chat.messages.first?.sender == myself{
+                        Image(systemName: "checkmark").foregroundStyle(.blue)
+                    }
+                    Text("\(chat.getLastMessage().getFormattedDate())").opacity(0.5)
+                }
                 Text("\(chat.unreadMessages)").padding(5).foregroundStyle(.background).background(Circle().foregroundStyle(chat.unreadMessages != 0 ? .blue :  Color(UIColor.systemBackground)))
             }
         }
