@@ -34,6 +34,7 @@ struct ChatView: View {
                 }.padding()
             }.navigationTitle(chat.name)
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar(.hidden, for: .tabBar)
         }
     }
     
