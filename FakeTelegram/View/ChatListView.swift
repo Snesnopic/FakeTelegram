@@ -25,9 +25,11 @@ struct ChatListView: View {
                 return chat1.getLastMessage().date > chat2.getLastMessage().date
             })){
                 chat in
-                Button(action: {}, label: {
+                NavigationLink {
+                    ChatView(chat: chat)
+                } label: {
                     RectangularContactView(chat: chat)
-                })
+                }
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 .frame(height: 70)
                 .swipeActions(edge: .trailing) {
