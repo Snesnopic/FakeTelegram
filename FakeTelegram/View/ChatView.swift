@@ -11,34 +11,37 @@ struct ChatView: View {
     var chat:Contact
     @State private var typingMessage:String = ""
     var body: some View {
-        VStack {
-            List (chat.messages.indices, id: \.self){
-                i in
-                MessageView(chatType: chat.chatType,
-                            currentMessage: chat.messages[i],
-                            isLastMessageInColumn: isLastMessageInColumn(index: i)).listRowSeparator(.hidden)
-                
-            }.listStyle(.inset)
-            HStack {
-                TextField("Message...", text: $typingMessage)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(minHeight: CGFloat(30))
-                
-                Button(action: {}) {
-                    Text("Send")
-                }
-            }.padding()
+        NavigationStack {
+            VStack {
+                List (chat.messages.indices, id: \.self){
+                    i in
+                    MessageView(chatType: chat.chatType,
+                                currentMessage: chat.messages[i],
+                                isLastMessageInColumn: isLastMessageInColumn(index: i)).listRowSeparator(.hidden).listRowBackground(Color.clear)
+                    
+                }.listStyle(.inset)
+                    .scrollContentBackground(.hidden)
+                    .background(Image("background"))
+                HStack {
+                    Image(systemName: "paperclip")
+                    TextField("Message...", text: $typingMessage)
+                        .textFieldStyle(.roundedBorder)
+                        .frame(minHeight: 30)
+                    
+                    Button(action: {}) {
+                        Image(systemName: "arrow.up.circle.fill").resizable().frame(width: 30,height: 30)
+                    }
+                }.padding()
+            }.navigationTitle(chat.name)
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
+    
     func isLastMessageInColumn(index:Int) -> Bool {
         if(index == (chat.messages.count - 1)){
             return true
         }
-        if(chat.messages[index].sender != chat.messages[index + 1].sender) {
-            return false
-            
-        }
-        return true
+        return chat.messages[index].sender != chat.messages[index + 1].sender
     }
 }
 
