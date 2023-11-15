@@ -12,12 +12,12 @@ struct ChatView: View {
     @State private var typingMessage:String = ""
     var body: some View {
         VStack {
-            List {
-                ForEach(chat.messages.indices, id: \.self) { i in
-                    MessageView(chatType: chat.chatType, 
-                                currentMessage: chat.messages[i],
-                                isLastMessageInColumn: isLastMessageInColumn(index: i))
-                }
+            List (chat.messages.indices, id: \.self){
+                i in
+                MessageView(chatType: chat.chatType,
+                            currentMessage: chat.messages[i],
+                            isLastMessageInColumn: isLastMessageInColumn(index: i))
+                
             }.listStyle(.inset)
             HStack {
                 TextField("Message...", text: $typingMessage)
@@ -34,11 +34,11 @@ struct ChatView: View {
         if(index == (chat.messages.count - 1)){
             return true
         }
-            if(chat.messages[index].sender != chat.messages[index + 1].sender) {
+        if(chat.messages[index].sender != chat.messages[index + 1].sender) {
             return false
-
+            
         }
-            return true
+        return true
     }
 }
 
