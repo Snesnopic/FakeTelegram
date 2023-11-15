@@ -8,11 +8,28 @@
 import SwiftUI
 
 struct ChatView: View {
+    var chat:Contact
+    @State private var typingMessage:String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            List {
+                ForEach(chat.messages, id: \.self) { msg in
+                    MessageView(chatType: chat.chatType, currentMessage: msg, isLastMessageInColumn: false)
+                }
+            }
+            HStack {
+                TextField("Message...", text: $typingMessage)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .frame(minHeight: CGFloat(30))
+                
+                Button(action: {}) {
+                    Text("Send")
+                }
+            }.padding()
+        }
     }
 }
 
 #Preview {
-    ChatView()
+    ChatView(chat: Contact(unreadMessages: 1, chatType: .personal,name: "Giorgio", messages: [Message(sender: "Giorgio", message: "Ciao!", date: Date()),Message(sender: myself, message: "Ciaoooo!", date: Date())]))
 }
