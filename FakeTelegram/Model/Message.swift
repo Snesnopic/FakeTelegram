@@ -6,7 +6,14 @@
 //
 
 import Foundation
-class Message{
+class Message: Hashable{
+    static func == (lhs: Message, rhs: Message) -> Bool {
+        return lhs.sender == rhs.sender && lhs.message == rhs.message && lhs.date == rhs.date
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(sender)
+    }
+    
     var sender:String
     var message:String
     var date:Date
