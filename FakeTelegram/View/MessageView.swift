@@ -17,20 +17,22 @@ struct MessageView: View {
                 if (currentMessage.sender == myself) {
                     Spacer()
                 }
-                if(currentMessage.sender != myself) {
+                if(currentMessage.sender != myself && chatType == .group) {
                     if(image != nil){
-                        image!.resizable()
-                            .frame(width: 50, height: 50, alignment: .center)
+                        image!
+                            .frame(width: 30, height: 30, alignment: .center)
                             .clipShape(Circle())
                     } else {
-                        Image(systemName: "plus").resizable()
-                            .frame(width: 50, height: 50, alignment: .center)
+                        Image(systemName: "person.crop.circle").resizable()
+                            .frame(width: 30, height: 30, alignment: .center)
                             .clipShape(Circle())
                     }
                 }
-                    
-                ContentMessageView(messageContent: currentMessage.message,
-                                   isCurrentUser: currentMessage.sender == myself).clipShape(ChatBubbleShape(direction: currentMessage.sender == myself ? .right : .left))
+                
+                ContentMessageView(sender: chatType == .group ? currentMessage.sender : nil,messageContent: currentMessage.message,
+                                   isCurrentUser: currentMessage.sender == myself).if(isLastMessageInColumn, transform: { cmv in
+                    cmv.clipShape(ChatBubbleShape(direction: currentMessage.sender == myself ? .right : .left))
+                })
                 
                 if(currentMessage.sender != myself){
                     Spacer()
@@ -41,5 +43,6 @@ struct MessageView: View {
 }
 
 #Preview {
-    MessageView(image:Image("dog_0001"),chatType: .personal,currentMessage: Message(sender: "myself", message: "Ascanio is a better name", date: Date()),isLastMessageInColumn: false)
+    MessageView(//image:Image("dog_0001"),
+                chatType: .group,currentMessage: Message(sender: myself, message: "Ascanio is a better name", date: Date()),isLastMessageInColumn: true)
 }
