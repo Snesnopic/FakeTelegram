@@ -28,41 +28,40 @@ struct ChatListView: View {
                 Button(action: {}, label: {
                     RectangularContactView(chat: chat)
                 })
-                
-                    .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-                    .frame(height: 70)
-                    .swipeActions(edge: .trailing) {
-                        if(chat.chatType != .personal){
-                            Button(action: {}, label: {
-                                VStack{
-                                    Image(systemName: "archivebox.fill")
-                                    Text("Archive")
-                                }
-                            })
-                        }
-                        Button(role: .destructive, action: {}, label: {
-                            VStack{
-                                Image(systemName: "trash.fill")
-                                Text("Delete")
-                            }})
+                .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                .frame(height: 70)
+                .swipeActions(edge: .trailing) {
+                    if(chat.chatType != .personal){
                         Button(action: {}, label: {
                             VStack{
-                                Image(systemName: "speaker.slash.fill")
-                                Text("Mute").font(.footnote)
-                            }}).tint(.orange)
+                                Image(systemName: "archivebox.fill")
+                                Text("Archive")
+                            }
+                        })
                     }
-                    .swipeActions(edge: .leading){
-                        Button(action: {}, label: {
-                            VStack{
-                                Image(systemName: chat.unreadMessages != 0 ? "message.fill" : "message.badge.filled.fill")
-                                Text(chat.unreadMessages != 0 ? "Read" : "Unread")
-                            }}).tint(chat.unreadMessages != 0 ? .gray : .blue)
-                        Button(action: {}, label: {
-                            VStack{
-                                Image(systemName: "pin.fill")
-                                Text("Pin")
-                            }}).tint(.green)
-                    }
+                    Button(role: .destructive, action: {}, label: {
+                        VStack{
+                            Image(systemName: "trash.fill")
+                            Text("Delete")
+                        }})
+                    Button(action: {}, label: {
+                        VStack{
+                            Image(systemName: "speaker.slash.fill")
+                            Text("Mute").font(.footnote)
+                        }}).tint(.orange)
+                }
+                .swipeActions(edge: .leading){
+                    Button(action: {}, label: {
+                        VStack{
+                            Image(systemName: chat.unreadMessages != 0 ? "message.fill" : "message.badge.filled.fill")
+                            Text(chat.unreadMessages != 0 ? "Read" : "Unread")
+                        }}).tint(chat.unreadMessages != 0 ? .gray : .blue)
+                    Button(action: {}, label: {
+                        VStack{
+                            Image(systemName: "pin.fill")
+                            Text("Pin")
+                        }}).tint(.green)
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading){
