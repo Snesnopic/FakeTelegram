@@ -16,7 +16,7 @@ struct ChatView: View {
                 i in
                 MessageView(chatType: chat.chatType,
                             currentMessage: chat.messages[i],
-                            isLastMessageInColumn: isLastMessageInColumn(index: i))
+                            isLastMessageInColumn: isLastMessageInColumn(index: i)).listRowSeparator(.hidden)
                 
             }.listStyle(.inset)
             HStack {
