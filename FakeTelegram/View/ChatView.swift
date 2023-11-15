@@ -13,10 +13,12 @@ struct ChatView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(chat.messages, id: \.self) { msg in
-                    MessageView(chatType: chat.chatType, currentMessage: msg, isLastMessageInColumn: false)
+                ForEach(chat.messages.indices, id: \.self) { i in
+                    MessageView(chatType: chat.chatType, 
+                                currentMessage: chat.messages[i],
+                                isLastMessageInColumn: isLastMessageInColumn(index: i))
                 }
-            }
+            }.listStyle(.inset)
             HStack {
                 TextField("Message...", text: $typingMessage)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -28,8 +30,18 @@ struct ChatView: View {
             }.padding()
         }
     }
+    func isLastMessageInColumn(index:Int) -> Bool {
+        if(index == (chat.messages.count - 1)){
+            return true
+        }
+            if(chat.messages[index].sender != chat.messages[index + 1].sender) {
+            return false
+
+        }
+            return true
+    }
 }
 
 #Preview {
-    ChatView(chat: Contact(unreadMessages: 1, chatType: .personal,name: "Giorgio", messages: [Message(sender: "Giorgio", message: "Ciao!", date: Date()),Message(sender: myself, message: "Ciaoooo!", date: Date())]))
+    ChatView(chat: Contact(unreadMessages: 1, chatType: .group,name: "Giorgio", messages: [Message(sender: "Giorgio", message: "Ciao!", date: Date()),Message(sender: myself, message: "Ciaoooo!", date: Date())]))
 }
