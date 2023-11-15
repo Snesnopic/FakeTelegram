@@ -64,9 +64,7 @@ struct ChatListView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading){
-                    Button(action: {}, label: {
-                        Text("Edit")
-                    })
+                    EditButton()
                 }
                 ToolbarItem(placement: .topBarTrailing){
                     Button(action: {}, label: {
