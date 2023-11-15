@@ -23,7 +23,12 @@ struct RectangularContactView: View {
             VStack (alignment: .trailing){
                 HStack {
                     if chat.chatType != .channel && chat.messages.first?.sender == myself{
-                        Image(systemName: "checkmark").foregroundStyle(.blue)
+                        ZStack (alignment: .trailing){
+                            Image(systemName: "checkmark").foregroundStyle(.blue)
+                            if(chat.seenByOther){
+                                Image(systemName: "checkmark").foregroundStyle(.blue).padding(.trailing, 8)
+                            }
+                        }
                     }
                     Text("\(chat.getLastMessage().getFormattedDate())").opacity(0.5)
                 }
@@ -34,5 +39,5 @@ struct RectangularContactView: View {
 }
 
 #Preview {
-    RectangularContactView(chat: Contact(unreadMessages: 2, chatType: .personal, name: "Giangiorgio", messages: [Message(sender: myself, message: "Test", date: Date())]))
+    RectangularContactView(chat: Contact(unreadMessages: 2, chatType: .personal, name: "Giangiorgio", messages: [Message(sender: myself, message: "Test", date: Date())],seenByOther: true))
 }
