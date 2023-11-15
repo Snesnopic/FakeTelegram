@@ -13,6 +13,7 @@
 		9DC49CD22B04D9BC003D402B /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC49CD12B04D9BC003D402B /* MessageView.swift */; };
 		9DC49CD42B04F4AC003D402B /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC49CD32B04F4AC003D402B /* ChatView.swift */; };
 		9DC49CD62B04FAFB003D402B /* ChatBubbleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC49CD52B04FAFB003D402B /* ChatBubbleShape.swift */; };
+		9DC49CD92B04FF90003D402B /* ConditionalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC49CD82B04FF90003D402B /* ConditionalModifier.swift */; };
 		9DC7C5D92B0260F400092226 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5D82B0260F400092226 /* Contact.swift */; };
 		9DC7C5DB2B02632600092226 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5DA2B02632600092226 /* Message.swift */; };
 		9DC7C5DD2B026C3E00092226 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5DC2B026C3E00092226 /* Folder.swift */; };
@@ -29,6 +30,7 @@
 		9DC49CD12B04D9BC003D402B /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		9DC49CD32B04F4AC003D402B /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		9DC49CD52B04FAFB003D402B /* ChatBubbleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleShape.swift; sourceTree = "<group>"; };
+		9DC49CD82B04FF90003D402B /* ConditionalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalModifier.swift; sourceTree = "<group>"; };
 		9DC7C5D82B0260F400092226 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		9DC7C5DA2B02632600092226 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		9DC7C5DC2B026C3E00092226 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				9DC49CD52B04FAFB003D402B /* ChatBubbleShape.swift */,
+				9DC49CD82B04FF90003D402B /* ConditionalModifier.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				9DC7C5DB2B02632600092226 /* Message.swift in Sources */,
 				9DC49CD22B04D9BC003D402B /* MessageView.swift in Sources */,
 				9DDA59022B023589005ED1CA /* ChatListView.swift in Sources */,
+				9DC49CD92B04FF90003D402B /* ConditionalModifier.swift in Sources */,
 				9D7D8C1E2B035EFA008F9299 /* ChatTypeEnum.swift in Sources */,
 				9DDA59002B023589005ED1CA /* FakeTelegramApp.swift in Sources */,
 				9DC49CD02B04D6E7003D402B /* ContentMessageView.swift in Sources */,
