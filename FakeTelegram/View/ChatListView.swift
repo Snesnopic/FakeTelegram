@@ -51,9 +51,9 @@ struct ChatListView: View {
                     .swipeActions(edge: .leading){
                         Button(action: {}, label: {
                             VStack{
-                                Image(systemName: "message.badge.filled.fill")
-                                Text("Unread")
-                            }}).tint(.blue)
+                                Image(systemName: chat.unreadMessages != 0 ? "message.fill" : "message.badge.filled.fill")
+                                Text(chat.unreadMessages != 0 ? "Read" : "Unread")
+                            }}).tint(chat.unreadMessages != 0 ? .gray : .blue)
                         Button(action: {}, label: {
                             VStack{
                                 Image(systemName: "pin.fill")
