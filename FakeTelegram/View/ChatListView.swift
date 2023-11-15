@@ -15,48 +15,54 @@ struct ChatListView: View {
     @State private var searchText = ""
     var body: some View {
         NavigationStack{
-            List(chats.filter{
-                chat in
-                return searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-                chat.name
-                    .lowercased()
-                    .contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())
-            }.sorted(by: {
-                chat1, chat2 in
-                return chat1.getLastMessage().date > chat2.getLastMessage().date
-            })){
-                chat in
-                RectangularContactView(chat: chat)
-                .listRowInsets(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                .background(.background)
-                .swipeActions(edge: .trailing) {
-                    Button(role: .destructive, action: {}, label: {
-                        VStack{
-                            Image(systemName: "trash.fill")
-                            Text("Delete").font(.caption)
-                        }})
-                    Button(action: {}, label: {
-                        VStack{
-                            Image(systemName: "speaker.slash.fill")
-                            Text("Mute")
-                        }})
+                List(chats.filter{
+                    chat in
+                    return searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+                    chat.name
+                        .lowercased()
+                        .contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())
+                }.sorted(by: {
+                    chat1, chat2 in
+                    return chat1.getLastMessage().date > chat2.getLastMessage().date
+                })){
+                    chat in
+                    RectangularContactView(chat: chat)
+                        .listRowInsets(EdgeInsets(top: 12, leading: 10, bottom: 13, trailing: 10))
+                        .background(.background)
+                        .swipeActions(edge: .trailing) {
+                            if(chat.chatType != .personal){
+                                Button(action: {}, label: {
+                                    VStack{
+                                        Image(systemName: "archivebox.fill")
+                                        Text("Archive")
+                                    }
+                                })
+                            }
+                            Button(role: .destructive, action: {}, label: {
+                                VStack{
+                                    Image(systemName: "trash.fill")
+                                    Text("Delete")
+                                }})
+                            Button(action: {}, label: {
+                                VStack{
+                                    Image(systemName: "speaker.slash.fill")
+                                    Text("Mute").font(.footnote)
+                                }}).tint(.orange)
+                        }
+                        .swipeActions(edge: .leading){
+                            Button(action: {}, label: {
+                                VStack{
+                                    Image(systemName: "message.badge.filled.fill")
+                                    Text("Unread")
+                                }}).tint(.blue)
+                            Button(action: {}, label: {
+                                VStack{
+                                    Image(systemName: "pin.fill")
+                                    Text("Pin")
+                                }}).tint(.green)
+                            
+                        }
                 }
-                .swipeActions(edge: .leading){
-                    Button(action: {}, label: {
-                        VStack{
-                            Image(systemName: "message.badge.filled.fill")
-                            Text("Unread")
-                        }}).tint(.blue)
-                    Button(action: {}, label: {
-                        VStack{
-                            Image(systemName: "pin.fill")
-                            Text("Pin")
-                        }}).tint(.green)
-                }
-            }.listStyle(.plain)
-                .searchable(text: $searchText)
-                .navigationTitle("Chats")
-                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading)
                     {
@@ -76,8 +82,15 @@ struct ChatListView: View {
                             Image(systemName: "square.and.pencil")
                         })
                     }
-                }.background(.foreground.opacity(0.03))
+                }
+                .listStyle(.plain)
+                .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
+                .searchable(text: $searchText)
+                .navigationTitle("Chats")
+                .navigationBarTitleDisplayMode(.inline)
         }
+        
     }
 }
 
