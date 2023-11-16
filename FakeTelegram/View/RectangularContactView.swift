@@ -15,7 +15,7 @@ struct RectangularContactView: View {
             VStack(alignment: .leading) {
                 Text(chat.contact.name).bold()
                 if chat.chatType != .personal && chat.getLastMessage() != nil {
-                    Text(chat.getLastMessage()!.message)
+                    Text(chat.getLastMessage()!.sender.name)
                 }
                 Text(chat.getLastMessage()!.message).opacity(0.4)
             }
