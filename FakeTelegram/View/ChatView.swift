@@ -15,7 +15,7 @@ struct ChatView: View {
             VStack {
                 List {
                     ForEach(chat.messages.sorted(by: { chat1, chat2 in
-                        return chat1.date > chat2.date
+                        return chat1.date < chat2.date
                     }).indices, id: \.self) { index in
                         MessageView(chatType: chat.chatType,
                                     currentMessage: chat.messages[index],
@@ -36,6 +36,9 @@ struct ChatView: View {
                     Button(action: {
                         if !typingMessage.isEmpty {
                             chat.messages.append(Message(sender: myself, message: typingMessage, date: Date()))
+                            chat.messages.sort( by: { chat1, chat2 in
+                                return chat1.date < chat2.date
+                            })
                             typingMessage = ""
                         }
                     }) {
@@ -66,6 +69,6 @@ struct ChatView: View {
 
 #Preview {
     let messages = [Message(sender: Contact(name: "Gianluca"), message: "Questa è una risposta",
-    date: Date().addingTimeInterval(4)), Message(sender: myself, message: "Ciao!", date: Date().addingTimeInterval(2))]
+    date: Date()), Message(sender: myself, message: "Ciao!", date: Date())]
     return ChatView(chat: Chat(seenByOther: true, unreadMessages: 2, chatType: .group, contact: Contact(name: "Gianluca"), messages: messages))
 }
