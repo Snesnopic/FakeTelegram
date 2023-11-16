@@ -15,10 +15,9 @@ struct ChatView: View {
             VStack {
                 List(chat.messages.indices, id: \.self) { index in
                     MessageView(chatType: chat.chatType,
-                                currentMessage: chat.messages[index],
-                                isLastMessageInColumn: isLastMessageInColumn(index:
-                                index)).listRowSeparator(.hidden).listRowBackground(Color.clear)
-
+                        currentMessage: chat.messages[index],
+                        isLastMessageInColumn: isLastMessageInColumn(index:
+                        index)).listRowSeparator(.hidden).listRowBackground(Color.clear)
                 }.listStyle(.inset)
                     .scrollContentBackground(.hidden)
                     .background(Image("background"))
@@ -37,6 +36,11 @@ struct ChatView: View {
                 .toolbar(.hidden, for: .tabBar)
                 .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        chat.getImage().frame(width: 30, height: 30).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                    }
+                }
         }
     }
 
