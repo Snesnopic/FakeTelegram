@@ -16,12 +16,10 @@ class Contact: Identifiable {
     var imageName: String?
     var messages: [Message]
     func getImage() -> Image {
-        
-        if(imageName != nil){
+        if imageName != nil {
             return Image(imageName!).resizable()
         }
         return Image(systemName: chatType.defaultImage)
-        
     }
     init(unreadMessages: Int, chatType: ChatTypeEnum, name: String, messages: [Message]) {
         self.unreadMessages = unreadMessages
@@ -39,20 +37,12 @@ class Contact: Identifiable {
         }
         self.messages = messages
     }
-    init(unreadMessages: Int, chatType: ChatTypeEnum, name: String, messages: [Message], seenByOther: Bool) {
+    init(unreadMessages: Int, chatType: ChatTypeEnum, name: String, messages: [Message], seenByOther: Bool, imageName: String? = nil) {
         self.unreadMessages = unreadMessages
         self.chatType = chatType
         self.name = name
         let index = Int.random(in: 0...45)
-        if index < 24 {
-            if index < 10 {
-                self.imageName = "dog_000\(index)"
-            } else {
-                self.imageName = "dog_00\(index)"
-            }
-        } else {
-            self.imageName = nil
-        }
+        self.imageName = imageName
         self.messages = messages
         self.seenByOther = seenByOther
     }
