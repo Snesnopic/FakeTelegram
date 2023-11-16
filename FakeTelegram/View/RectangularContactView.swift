@@ -11,7 +11,7 @@ struct RectangularContactView: View {
     var chat: Contact
     var body: some View {
         HStack(alignment: .center) {
-            chat.image.frame(width: 60, height: 60).clipShape(Circle())
+            chat.getImage().frame(width: 60, height: 60).clipShape(Circle())
             VStack(alignment: .leading) {
                 Text(chat.name).bold()
                 if chat.chatType != .personal {
