@@ -26,26 +26,24 @@ struct ChatView: View {
                     TextField("Message...", text: $typingMessage)
                         .textFieldStyle(.roundedBorder)
                         .frame(minHeight: 30)
-
                     Button(action: {}) {
                         Image(systemName: "arrow.up.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
                     }
-                }.padding()
+                }.padding().background(Color(UIColor.systemBackground).opacity(0.8))
             }.navigationTitle(chat.contact.name)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(.hidden, for: .tabBar)
                 .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
-                .toolbar {
+                .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .tabBar)
                     ToolbarItem(placement: .confirmationAction) {
                         chat.getImage().frame(width: 30, height: 30).clipShape(Circle()).font(.system(size: 12))
                     }
                 }
         }
     }
-
     func isLastMessageInColumn(index: Int) -> Bool {
         if index == (chat.messages.count - 1) {
             return true
@@ -55,7 +53,6 @@ struct ChatView: View {
 }
 
 #Preview {
-
     let messages = [Message(sender: Contact(name: "Gianluca"), message: "Ciao", date: Date()), Message(sender: myself, message: "Ciao", date: Date())]
     return ChatView(chat: Chat(seenByOther: true, unreadMessages: 2, chatType: .group, contact: Contact(name: "Gianluca"), messages: messages))
 }
