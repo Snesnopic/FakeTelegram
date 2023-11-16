@@ -10,21 +10,20 @@ import SwiftUI
 var chats: [Contact] = [
     Contact(unreadMessages: 2, chatType: .personal, name: "Gianluca", messages: [Message(sender: myself, message: "Ciao", date: Date())]),
     Contact(unreadMessages: 0, chatType: .channel, name: "Meme channel", messages: [Message(sender: "Claudio", message: "Mario Doccia", date: Date())]),
-    Contact(unreadMessages: 4, chatType: .group, name: "Gruppo uscite sabato", messages: [Message(sender: myself, message: "Ciao, come stai?", date: Date()), Message(sender: "Salvatore", message: "Alle 9 da Cibus", date: Date().addingTimeInterval(1))], seenByOther: true)]
+    Contact(unreadMessages: 4, chatType: .group, name: "Gruppo uscite sabato",
+            messages: [Message(sender: myself, message: "Ciao, come stai?", date: Date()),
+                       Message(sender: "Salvatore", message: "Alle 9 da Cibus", date: Date().addingTimeInterval(1))], seenByOther: true)]
 
 struct ChatListView: View {
     @State private var searchText = ""
     var body: some View {
         NavigationStack {
-            List(chats.filter {
-                chat in
+            List(chats.filter { chat in
                 return searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
                 chat.name.lowercased().contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())
-            }.sorted(by: {
-                chat1, chat2 in
+            }.sorted(by: { chat1, chat2 in
                 return chat1.getLastMessage().date > chat2.getLastMessage().date
-            })) {
-                chat in
+            })) { chat in
                 NavigationLink {
                     ChatView(chat: chat)
                 } label: {

@@ -13,7 +13,8 @@ struct FakeTelegramApp: App {
     var body: some Scene {
         WindowGroup {
             TabView(selection: $selection) {
-                ChatListView().badge("!").tabItem { Label("Contacts", systemImage: "person.crop.circle") }.background(.gray).tag(0)
+                ChatListView().badge("!").tabItem { Label("Contacts", systemImage: "person.crop.circle") }
+                    .background(.gray).tag(0)
                 ChatListView().badge(chats.reduce(0) { result, chat in
                     result + chat.unreadMessages
                 }).tabItem { Label("Chat", systemImage: "bubble.left.and.bubble.right.fill") }.tag(1)

@@ -32,12 +32,14 @@ struct RectangularContactView: View {
                     }
                     Text("\(chat.getLastMessage().getFormattedDate())").opacity(0.5)
                 }
-                Text("\(chat.unreadMessages)").padding(5).foregroundStyle(.background).background(Circle().foregroundStyle(chat.unreadMessages != 0 ? .blue :  Color(UIColor.systemBackground)))
+                Text("\(chat.unreadMessages)").padding(5).foregroundStyle(.background).background(Circle()
+                    .foregroundStyle(chat.unreadMessages != 0 ? .blue :  Color(UIColor.systemBackground)))
             }
         }
     }
 }
 
 #Preview {
-    RectangularContactView(chat: Contact(unreadMessages: 2, chatType: .personal, name: "Giangiorgio", messages: [Message(sender: myself, message: "Test", date: Date())], seenByOther: true))
+    RectangularContactView(chat: Contact(unreadMessages: 2, chatType: .personal, name: "Giangiorgio", messages:
+        [Message(sender: myself, message: "Test", date: Date())], seenByOther: true))
 }

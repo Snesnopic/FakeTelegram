@@ -13,11 +13,11 @@ struct ChatView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                List(chat.messages.indices, id: \.self) {
-                    i in
+                List(chat.messages.indices, id: \.self) { index in
                     MessageView(chatType: chat.chatType,
-                                currentMessage: chat.messages[i],
-                                isLastMessageInColumn: isLastMessageInColumn(index: i)).listRowSeparator(.hidden).listRowBackground(Color.clear)
+                                currentMessage: chat.messages[index],
+                                isLastMessageInColumn: isLastMessageInColumn(index:
+                                index)).listRowSeparator(.hidden).listRowBackground(Color.clear)
 
                 }.listStyle(.inset)
                     .scrollContentBackground(.hidden)
@@ -35,6 +35,8 @@ struct ChatView: View {
             }.navigationTitle(chat.name)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(.hidden, for: .tabBar)
+                .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
         }
     }
 
@@ -47,5 +49,6 @@ struct ChatView: View {
 }
 
 #Preview {
-    ChatView(chat: Contact(unreadMessages: 1, chatType: .group, name: "Giorgio", messages: [Message(sender: "Giorgio", message: "Ciao!", date: Date()), Message(sender: myself, message: "Ciaoooo!", date: Date())]))
+    ChatView(chat: Contact(unreadMessages: 1, chatType: .group, name: "Giorgio",
+                           messages: [Message(sender: "Giorgio", message: "Ciao!", date: Date()), Message(sender: myself, message: "Ciaoooo!", date: Date())]))
 }

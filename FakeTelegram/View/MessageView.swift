@@ -29,8 +29,9 @@ struct MessageView: View {
                 }
             }
 
-            ContentMessageView(sender: chatType == .group ? currentMessage.sender : nil, messageContent: currentMessage.message,
-                               isCurrentUser: currentMessage.sender == myself).if(isLastMessageInColumn, transform: { cmv in
+            ContentMessageView(sender: chatType == .group ? currentMessage.sender : nil, messageContent:
+                currentMessage.message,
+                isCurrentUser: currentMessage.sender == myself).if(isLastMessageInColumn, transform: { cmv in
                 cmv.clipShape(ChatBubbleShape(direction: currentMessage.sender == myself ? .right : .left))
             }).if(!isLastMessageInColumn, transform: { cmv in
                 cmv.clipShape(RoundedRectangle(cornerRadius: 25.0))
@@ -45,6 +46,7 @@ struct MessageView: View {
 }
 
 #Preview {
-    MessageView(// image:Image("dog_0001"),
-        chatType: .group, currentMessage: Message(sender: myself, message: "Ascanio is a better name", date: Date()), isLastMessageInColumn: true)
+    // image:Image("dog_0001"),
+    MessageView(chatType: .group, currentMessage: Message(sender: myself, message: "Ascanio is a better name",
+        date: Date()), isLastMessageInColumn: true)
 }
