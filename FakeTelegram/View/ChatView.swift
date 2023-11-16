@@ -37,7 +37,7 @@ struct ChatView: View {
                 .toolbar(.hidden, for: .tabBar)
                 .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
-                .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .tabBar)
+                .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
                         chat.getImage().frame(width: 30, height: 30).clipShape(Circle()).font(.system(size: 12))
                     }
