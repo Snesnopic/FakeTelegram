@@ -11,13 +11,15 @@ class Message: Hashable {
         return lhs.sender == rhs.sender && lhs.message == rhs.message && lhs.date == rhs.date
     }
     func hash(into hasher: inout Hasher) {
-        hasher.combine(sender)
+        hasher.combine(sender.name)
+        hasher.combine(message)
+        hasher.combine(date)
     }
 
-    var sender: String
+    var sender: Contact
     var message: String
     var date: Date
-    init(sender: String, message: String, date: Date) {
+    init(sender: Contact, message: String, date: Date) {
         self.sender = sender
         self.message = message
         self.date = date
@@ -28,4 +30,4 @@ class Message: Hashable {
         return dateFormatter.string(from: date)
     }
 }
-let myself: String = "me"
+let myself: Contact = Contact(name: "me")

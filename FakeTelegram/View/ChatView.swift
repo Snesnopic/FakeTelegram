@@ -28,17 +28,19 @@ struct ChatView: View {
                         .frame(minHeight: 30)
 
                     Button(action: {}) {
-                        Image(systemName: "arrow.up.circle.fill").resizable().frame(width: 30, height: 30)
+                        Image(systemName: "arrow.up.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
                     }
                 }.padding()
-            }.navigationTitle(chat.name)
+            }.navigationTitle(chat.contact.name)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(.hidden, for: .tabBar)
                 .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .navigationBar)
                 .toolbarBackground(.visible, for: .navigationBar)
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
-                        chat.getImage().frame(width: 30, height: 30).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                        chat.getImage().frame(width: 30, height: 30).clipShape(Circle()).font(.system(size: 12))
                     }
                 }
         }
@@ -53,6 +55,7 @@ struct ChatView: View {
 }
 
 #Preview {
-    ChatView(chat: Chat(unreadMessages: 1, chatType: .group, name: "Giorgio",
-                           messages: [Message(sender: "Giorgio", message: "Ciao!", date: Date()), Message(sender: myself, message: "Ciaoooo!", date: Date())]))
+
+    let messages = [Message(sender: Contact(name: "Gianluca"), message: "Ciao", date: Date()), Message(sender: myself, message: "Ciao", date: Date())]
+    return ChatView(chat: Chat(seenByOther: true, unreadMessages: 2, chatType: .group, contact: Contact(name: "Gianluca"), messages: messages))
 }

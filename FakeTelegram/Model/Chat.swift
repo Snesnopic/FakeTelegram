@@ -9,49 +9,30 @@ import Foundation
 import SwiftUI
 
 class Chat: Identifiable {
-    var seenByOther: Bool = false
+    var seenByOther: Bool
     var unreadMessages: Int
     var chatType: ChatTypeEnum
-    var name: String
-    var imageName: String?
+    var contact: Contact
     var messages: [Message]
-    func getImage() -> Image {
-        if imageName != nil {
-            return Image(imageName!).resizable()
-        }
-        return Image(systemName: chatType.defaultImage)
-    }
-    init(unreadMessages: Int, chatType: ChatTypeEnum, name: String, messages: [Message]) {
-        self.unreadMessages = unreadMessages
-        self.chatType = chatType
-        self.name = name
-        let index = Int.random(in: 0...45)
-        if index < 24 {
-            if index < 10 {
-                self.imageName = "dog_000\(index)"
-            } else {
-                self.imageName = "dog_00\(index)"
-            }
-        } else {
-            self.imageName = nil
-        }
-        self.messages = messages
-    }
-    init(unreadMessages: Int, chatType: ChatTypeEnum, name: String, messages: [Message], seenByOther: Bool, imageName: String? = nil) {
-        self.unreadMessages = unreadMessages
-        self.chatType = chatType
-        self.name = name
-        let index = Int.random(in: 0...45)
-        self.imageName = imageName
-        self.messages = messages
+    init(seenByOther: Bool = false, unreadMessages: Int = 0, chatType: ChatTypeEnum = .personal, contact: Contact = Contact(name: "Unkown contact"), messages: [Message] = []) {
         self.seenByOther = seenByOther
+        self.unreadMessages = unreadMessages
+        self.chatType = chatType
+        self.contact = contact
+        self.messages = messages
     }
-    func getLastMessage() -> Message {
+    func getLastMessage() -> Message? {
         if messages.isEmpty {
-            return Message(sender: "", message: "", date: Date())
+            return nil
         } else {
             messages.sort {$0.date > $1.date}
             return messages[0]
         }
+    }
+    func getImage() -> Image {
+        if contact.imageName != nil {
+            return Image(contact.imageName!).resizable()
+        }
+        return Image(systemName: chatType.defaultImage)
     }
 }

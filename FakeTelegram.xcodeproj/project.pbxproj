@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D19FBF62B064F9F00894623 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D19FBF52B064F9F00894623 /* Contact.swift */; };
 		9D5B24AD2B03BE4300826669 /* RectangularContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5B24AC2B03BE4300826669 /* RectangularContactView.swift */; };
 		9D7D8C1E2B035EFA008F9299 /* ChatTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */; };
 		9DC49CD02B04D6E7003D402B /* ContentMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC49CCF2B04D6E7003D402B /* ContentMessageView.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D19FBF52B064F9F00894623 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		9D5B24AC2B03BE4300826669 /* RectangularContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularContactView.swift; sourceTree = "<group>"; };
 		9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTypeEnum.swift; sourceTree = "<group>"; };
 		9DC49CCF2B04D6E7003D402B /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 				9DC7C5D82B0260F400092226 /* Chat.swift */,
 				9DC7C5DA2B02632600092226 /* Message.swift */,
 				9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */,
+				9D19FBF52B064F9F00894623 /* Contact.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D19FBF62B064F9F00894623 /* Contact.swift in Sources */,
 				9DC7C5D92B0260F400092226 /* Chat.swift in Sources */,
 				9DC49CD42B04F4AC003D402B /* ChatView.swift in Sources */,
 				9DC49CD62B04FAFB003D402B /* ChatBubbleShape.swift in Sources */,

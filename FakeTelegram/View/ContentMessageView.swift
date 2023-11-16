@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ContentMessageView: View {
-    var sender: String?
+    var sender: Contact?
     var messageContent: String
     var isCurrentUser: Bool
     var body: some View {
         VStack(alignment: .leading) {
             if sender != nil && sender != myself {
-                Text(sender!)
+                Text(sender!.name)
             }
             Text(messageContent)
         }.padding(10)

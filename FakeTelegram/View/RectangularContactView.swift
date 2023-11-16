@@ -13,11 +13,11 @@ struct RectangularContactView: View {
         HStack(alignment: .center) {
             chat.getImage().frame(width: 60, height: 60).clipShape(Circle())
             VStack(alignment: .leading) {
-                Text(chat.name).bold()
-                if chat.chatType != .personal {
-                    Text(chat.getLastMessage().sender)
+                Text(chat.contact.name).bold()
+                if chat.chatType != .personal && chat.getLastMessage() != nil {
+                    Text(chat.getLastMessage()!.message)
                 }
-                Text(chat.getLastMessage().message).opacity(0.4)
+                Text(chat.getLastMessage()!.message).opacity(0.4)
             }
             Spacer(minLength: 3)
             VStack(alignment: .trailing) {
@@ -30,7 +30,7 @@ struct RectangularContactView: View {
                             }
                         }
                     }
-                    Text("\(chat.getLastMessage().getFormattedDate())").opacity(0.5)
+                    Text("\(chat.getLastMessage()!.getFormattedDate())").opacity(0.5)
                 }
                 Text("\(chat.unreadMessages)").padding(5).foregroundStyle(
                     chat.unreadMessages != 0 ? Color(UIColor.systemBackground) :  Color.clear).background(Circle()
@@ -41,6 +41,7 @@ struct RectangularContactView: View {
 }
 
 #Preview {
-    RectangularContactView(chat: Chat(unreadMessages: 2, chatType: .personal, name: "Giangiorgio", messages:
-        [Message(sender: myself, message: "Test", date: Date())], seenByOther: true))
+    let message = Message(sender: Contact(name: "Giangiorgio"), message: "Ciao!", date: Date())
+    let chat = Chat(seenByOther: false, unreadMessages: 2, chatType: .personal, contact: Contact(name: "Giangiorgio"), messages: [message])
+    return RectangularContactView(chat: chat)
 }

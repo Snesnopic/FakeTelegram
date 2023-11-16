@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MessageView: View {
-    var image: Image?
     var chatType: ChatTypeEnum
     var currentMessage: Message
     var isLastMessageInColumn: Bool
@@ -18,14 +17,14 @@ struct MessageView: View {
                 Spacer()
             }
             if currentMessage.sender != myself && chatType == .group {
-                if image != nil {
-                    image!
+                if currentMessage.sender.imageName != nil {
+                    Image(currentMessage.sender.imageName!)
                         .frame(width: 30, height: 30, alignment: .center)
                         .clipShape(Circle())
                 } else {
                     Image(systemName: "person.crop.circle").resizable()
                         .frame(width: 30, height: 30, alignment: .center)
-                        .clipShape(Circle())
+                        .clipShape(Circle()).background(Circle().frame(width: 30,height: 30).foregroundStyle(.background))
                 }
             }
 
@@ -47,6 +46,6 @@ struct MessageView: View {
 
 #Preview {
     // image:Image("dog_0001"),
-    MessageView(chatType: .group, currentMessage: Message(sender: myself, message: "Ascanio is a better name",
+    MessageView(chatType: .group, currentMessage: Message(sender: Contact(name: "Raskol'Nikov"), message: "Ascanio is a better name",
         date: Date()), isLastMessageInColumn: true)
 }
