@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChatView: View {
-    var chat: Contact
+    var chat: Chat
     @State private var typingMessage: String = ""
     var body: some View {
         NavigationStack {
@@ -53,6 +53,6 @@ struct ChatView: View {
 }
 
 #Preview {
-    ChatView(chat: Contact(unreadMessages: 1, chatType: .group, name: "Giorgio",
+    ChatView(chat: Chat(unreadMessages: 1, chatType: .group, name: "Giorgio",
                            messages: [Message(sender: "Giorgio", message: "Ciao!", date: Date()), Message(sender: myself, message: "Ciaoooo!", date: Date())]))
 }

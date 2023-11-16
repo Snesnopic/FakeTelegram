@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RectangularContactView: View {
-    var chat: Contact
+    var chat: Chat
     var body: some View {
         HStack(alignment: .center) {
             chat.getImage().frame(width: 60, height: 60).clipShape(Circle())
@@ -32,14 +32,15 @@ struct RectangularContactView: View {
                     }
                     Text("\(chat.getLastMessage().getFormattedDate())").opacity(0.5)
                 }
-                Text("\(chat.unreadMessages)").padding(5).foregroundStyle(.background).background(Circle()
-                    .foregroundStyle(chat.unreadMessages != 0 ? .blue :  Color(UIColor.systemBackground)))
+                Text("\(chat.unreadMessages)").padding(5).foregroundStyle(
+                    chat.unreadMessages != 0 ? Color(UIColor.systemBackground) :  Color.clear).background(Circle()
+                    .foregroundStyle(chat.unreadMessages != 0 ? .blue :  Color.clear))
             }
         }
     }
 }
 
 #Preview {
-    RectangularContactView(chat: Contact(unreadMessages: 2, chatType: .personal, name: "Giangiorgio", messages:
+    RectangularContactView(chat: Chat(unreadMessages: 2, chatType: .personal, name: "Giangiorgio", messages:
         [Message(sender: myself, message: "Test", date: Date())], seenByOther: true))
 }

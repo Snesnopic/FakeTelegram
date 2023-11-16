@@ -9,8 +9,8 @@ import Foundation
 
 class Folder: Identifiable {
     var name: String
-    var chats: [Contact]
-    init(name: String, chats: [Contact]) {
+    var chats: [Chat]
+    init(name: String, chats: [Chat]) {
         self.name = name
         self.chats = chats
     }

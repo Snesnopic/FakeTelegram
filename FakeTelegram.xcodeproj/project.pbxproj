@@ -14,9 +14,8 @@
 		9DC49CD42B04F4AC003D402B /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC49CD32B04F4AC003D402B /* ChatView.swift */; };
 		9DC49CD62B04FAFB003D402B /* ChatBubbleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC49CD52B04FAFB003D402B /* ChatBubbleShape.swift */; };
 		9DC49CD92B04FF90003D402B /* ConditionalModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC49CD82B04FF90003D402B /* ConditionalModifier.swift */; };
-		9DC7C5D92B0260F400092226 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5D82B0260F400092226 /* Contact.swift */; };
+		9DC7C5D92B0260F400092226 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5D82B0260F400092226 /* Chat.swift */; };
 		9DC7C5DB2B02632600092226 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5DA2B02632600092226 /* Message.swift */; };
-		9DC7C5DD2B026C3E00092226 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC7C5DC2B026C3E00092226 /* Folder.swift */; };
 		9DDA59002B023589005ED1CA /* FakeTelegramApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDA58FF2B023589005ED1CA /* FakeTelegramApp.swift */; };
 		9DDA59022B023589005ED1CA /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDA59012B023589005ED1CA /* ChatListView.swift */; };
 		9DDA59042B02358A005ED1CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DDA59032B02358A005ED1CA /* Assets.xcassets */; };
@@ -31,9 +30,8 @@
 		9DC49CD32B04F4AC003D402B /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		9DC49CD52B04FAFB003D402B /* ChatBubbleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleShape.swift; sourceTree = "<group>"; };
 		9DC49CD82B04FF90003D402B /* ConditionalModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalModifier.swift; sourceTree = "<group>"; };
-		9DC7C5D82B0260F400092226 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		9DC7C5D82B0260F400092226 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		9DC7C5DA2B02632600092226 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		9DC7C5DC2B026C3E00092226 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		9DDA58FC2B023589005ED1CA /* FakeTelegram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeTelegram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DDA58FF2B023589005ED1CA /* FakeTelegramApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeTelegramApp.swift; sourceTree = "<group>"; };
 		9DDA59012B023589005ED1CA /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
@@ -55,9 +53,8 @@
 		9D7D8C1F2B03A678008F9299 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9DC7C5D82B0260F400092226 /* Contact.swift */,
+				9DC7C5D82B0260F400092226 /* Chat.swift */,
 				9DC7C5DA2B02632600092226 /* Message.swift */,
-				9DC7C5DC2B026C3E00092226 /* Folder.swift */,
 				9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */,
 			);
 			path = Model;
@@ -213,8 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DC7C5D92B0260F400092226 /* Contact.swift in Sources */,
-				9DC7C5DD2B026C3E00092226 /* Folder.swift in Sources */,
+				9DC7C5D92B0260F400092226 /* Chat.swift in Sources */,
 				9DC49CD42B04F4AC003D402B /* ChatView.swift in Sources */,
 				9DC49CD62B04FAFB003D402B /* ChatBubbleShape.swift in Sources */,
 				9DC7C5DB2B02632600092226 /* Message.swift in Sources */,

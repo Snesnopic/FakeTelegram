@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Contact: Identifiable {
+class Chat: Identifiable {
     var seenByOther: Bool = false
     var unreadMessages: Int
     var chatType: ChatTypeEnum
