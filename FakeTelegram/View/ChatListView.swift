@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-var chats: [Chat] = [
-    Chat(seenByOther: true, unreadMessages: 0, chatType: .personal, contact: Contact(name: "Gianluca"), messages: [Message(sender: Contact(name: "Gianluca"), message: "Ciao", date: Date())]),
-
-    Chat(seenByOther: false, unreadMessages: 3, chatType: .channel, contact:
-            Contact(name: "Meme channel"), messages: [Message(sender:
-            Contact(name: "Meme channel"), message: "Wassup", date: Date())]),
-
-    Chat(seenByOther: false, unreadMessages: 3, chatType: .group, contact:
-            Contact(name: "Uscite sabato"), messages: [Message(sender: myself,message: "Ciao, come stai?", date: Date()), Message(sender:
-            Contact(name: "Salvatore"), message: "Alle 9 da Cibus", date:Date().addingTimeInterval(1))])]
-
 struct ChatListView: View {
+
+    @State private var chats: [Chat] = [
+        Chat(seenByOther: true, unreadMessages: 0, chatType: .personal, contact: Contact(name: "Gianluca"), messages: [Message(sender: Contact(name: "Gianluca"), message: "Ciao", date: Date())]),
+
+        Chat(seenByOther: false, unreadMessages: 3, chatType: .channel, contact:
+                Contact(name: "Meme channel"), messages: [Message(sender:
+                Contact(name: "Meme channel"), message: "Wassup", date: Date())]),
+
+        Chat(seenByOther: false, unreadMessages: 3, chatType: .group, contact:
+                Contact(name: "Uscite sabato"), messages: [Message(sender: myself, message: "Ciao, come stai?", date: Date()), Message(sender:
+                Contact(name: "Salvatore"), message: "Alle 9 da Cibus", date: Date().addingTimeInterval(1))])]
+
     @State private var searchText = ""
     var body: some View {
         NavigationStack {
@@ -26,7 +27,7 @@ struct ChatListView: View {
                 return searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
                 chat.contact.name.lowercased().contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())
             }.sorted(by: { chat1, chat2 in
-                return chat1.getLastMessage()!.date > chat2.getLastMessage()!.date
+                return chat1.getLastMessage()!.date < chat2.getLastMessage()!.date
             })) { chat in
                 NavigationLink {
                     ChatView(chat: chat)
@@ -89,7 +90,9 @@ struct ChatListView: View {
             .searchable(text: $searchText)
             .navigationTitle("Chats")
             .navigationBarTitleDisplayMode(.inline)
-        }
+        }.badge(chats.reduce(0) { result, chat in
+            result + chat.unreadMessages
+        })
     }
 }
 
