@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct RectangularContactView: View {
-    var chat:Contact
+    var chat: Contact
     var body: some View {
-        HStack(alignment: .center){
+        HStack(alignment: .center) {
             chat.image.frame(width: 60, height: 60).clipShape(Circle())
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 Text(chat.name).bold()
-                if(chat.chatType != .personal){
+                if chat.chatType != .personal {
                     Text(chat.getLastMessage().sender)
                 }
                 Text(chat.getLastMessage().message).opacity(0.4)
             }
             Spacer(minLength: 3)
-            VStack (alignment: .trailing){
+            VStack(alignment: .trailing) {
                 HStack {
-                    if chat.chatType != .channel && chat.messages.first?.sender == myself{
-                        ZStack (alignment: .trailing){
+                    if chat.chatType != .channel && chat.messages.first?.sender == myself {
+                        ZStack(alignment: .trailing) {
                             Image(systemName: "checkmark").foregroundStyle(.blue)
-                            if(chat.seenByOther){
+                            if chat.seenByOther {
                                 Image(systemName: "checkmark").foregroundStyle(.blue).padding(.trailing, 8)
                             }
                         }
@@ -39,5 +39,5 @@ struct RectangularContactView: View {
 }
 
 #Preview {
-    RectangularContactView(chat: Contact(unreadMessages: 2, chatType: .personal, name: "Giangiorgio", messages: [Message(sender: myself, message: "Test", date: Date())],seenByOther: true))
+    RectangularContactView(chat: Contact(unreadMessages: 2, chatType: .personal, name: "Giangiorgio", messages: [Message(sender: myself, message: "Test", date: Date())], seenByOther: true))
 }

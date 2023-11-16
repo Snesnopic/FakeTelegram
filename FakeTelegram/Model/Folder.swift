@@ -7,9 +7,9 @@
 
 import Foundation
 
-class Folder: Identifiable{
-    var name:String
-    var chats:[Contact]
+class Folder: Identifiable {
+    var name: String
+    var chats: [Contact]
     init(name: String, chats: [Contact]) {
         self.name = name
         self.chats = chats

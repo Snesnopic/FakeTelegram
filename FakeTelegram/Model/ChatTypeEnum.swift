@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum ChatTypeEnum: String{
+enum ChatTypeEnum: String {
     case personal = "Personal"
     case channel = "Channel"
     case group = "Group"
-    
-    var defaultImage:String {
+
+    var defaultImage: String {
         switch self {
         case .personal:
             "person.fill"

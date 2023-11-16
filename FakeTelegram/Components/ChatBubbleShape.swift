@@ -13,13 +13,13 @@ struct ChatBubbleShape: Shape {
         case left
         case right
     }
-    
+
     let direction: Direction
-    
+
     func path(in rect: CGRect) -> Path {
         return (direction == .left) ? getLeftBubblePath(in: rect) : getRightBubblePath(in: rect)
     }
-    
+
     private func getLeftBubblePath(in rect: CGRect) -> Path {
         let width = rect.width
         let height = rect.height
@@ -52,13 +52,13 @@ struct ChatBubbleShape: Shape {
         }
         return path
     }
-    
+
     private func getRightBubblePath(in rect: CGRect) -> Path {
         let width = rect.width
         let height = rect.height
         let path = Path { p in
             p.move(to: CGPoint(x: 25, y: height))
-            p.addLine(to: CGPoint(x:  20, y: height))
+            p.addLine(to: CGPoint(x: 20, y: height))
             p.addCurve(to: CGPoint(x: 0, y: height - 20),
                        control1: CGPoint(x: 8, y: height),
                        control2: CGPoint(x: 0, y: height - 8))
@@ -81,7 +81,7 @@ struct ChatBubbleShape: Shape {
             p.addCurve(to: CGPoint(x: width - 25, y: height),
                        control1: CGPoint(x: width - 16, y: height),
                        control2: CGPoint(x: width - 20, y: height))
-            
+
         }
         return path
     }
