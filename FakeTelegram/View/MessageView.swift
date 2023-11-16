@@ -24,7 +24,7 @@ struct MessageView: View {
                 } else {
                     Image(systemName: "person.crop.circle").resizable()
                         .frame(width: 30, height: 30, alignment: .center)
-                        .clipShape(Circle()).background(Circle().frame(width: 30,height: 30).foregroundStyle(.background))
+                        .clipShape(Circle()).background(Circle().frame(width: 30, height: 30).foregroundStyle(.background))
                 }
             }
 
