@@ -14,7 +14,7 @@ struct ContentMessageView: View {
     var body: some View {
         VStack(alignment: .leading) {
             if sender != nil && sender != myself {
-                Text(sender!.name)
+                Text(sender!.name).foregroundStyle(.blue)
             }
             Text(messageContent)
         }.padding(10)
