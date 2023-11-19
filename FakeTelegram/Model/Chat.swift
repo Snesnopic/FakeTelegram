@@ -14,18 +14,20 @@ class Chat: Identifiable {
     var chatType: ChatTypeEnum
     var contact: Contact
     var messages: [Message]
-    init(seenByOther: Bool = false, unreadMessages: Int = 0, chatType: ChatTypeEnum = .personal, contact: Contact = Contact(name: "Unkown contact"), messages: [Message] = []) {
+    var dateCreated: Date
+    init(seenByOther: Bool = false, unreadMessages: Int = 0, chatType: ChatTypeEnum = .personal, contact: Contact = Contact(name: "Unkown contact"), messages: [Message] = [],dateCreated: Date = Date()) {
         self.seenByOther = seenByOther
         self.unreadMessages = unreadMessages
         self.chatType = chatType
         self.contact = contact
         self.messages = messages
+        self.dateCreated = dateCreated
     }
-    func getLastMessage() -> Message? {
+    func getLastMessage() -> Message {
         if messages.isEmpty {
-            return nil
+            return Message(sender: Contact(name: "",imageName: nil), message: "", date: dateCreated)
         } else {
-            messages.sort {$0.date > $1.date}
+            messages.sort()
             return messages[0]
         }
     }
