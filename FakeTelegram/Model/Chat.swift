@@ -25,15 +25,15 @@ class Chat: Identifiable {
     }
     func getLastMessage() -> Message {
         if messages.isEmpty {
-            return Message(sender: Contact(name: "",imageName: nil), message: "", date: dateCreated)
+            return Message(sender: Contact(name: "",imageName: "DEFAULTIMAGE"), message: "", date: dateCreated)
         } else {
             messages.sort()
             return messages[messages.endIndex - 1]
         }
     }
     func getImage() -> Image {
-        if contact.imageName != nil {
-            return Image(contact.imageName!).resizable()
+        if contact.imageName != "DEFAULTIMAGE" {
+            return Image(contact.imageName).resizable()
         }
         return Image(systemName: chatType.defaultImage)
     }

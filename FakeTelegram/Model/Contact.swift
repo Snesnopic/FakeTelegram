@@ -6,15 +6,15 @@
 //
 
 import Foundation
-import SwiftUI
-
-struct Contact: Equatable {
-    var name: String
-    var imageName: String?
+import SwiftData
+@Model
+class Contact: Equatable {
+    @Attribute(.unique) var name: String
+    var imageName: String
     static func == (lhs: Contact, rhs: Contact) -> Bool {
         return lhs.name == rhs.name && lhs.imageName == rhs.imageName
     }
-    init(name: String, imageName: String? = nil) {
+    init(name: String, imageName: String = "DEFAULTIMAGE") {
         self.name = name
         self.imageName = imageName
     }
@@ -28,7 +28,9 @@ struct Contact: Equatable {
                 self.imageName = "dog_00\(index)"
             }
         } else {
-            self.imageName = nil
+            self.imageName = "DEFAULTIMAGE"
         }
     }
 }
+
+let myself: Contact = Contact(name: "me")

@@ -17,8 +17,8 @@ struct MessageView: View {
                 Spacer()
             }
             if currentMessage.sender != myself && chatType == .group {
-                if currentMessage.sender.imageName != nil {
-                    Image(currentMessage.sender.imageName!)
+                if currentMessage.sender.imageName != "DEFAULTIMAGE" {
+                    Image(currentMessage.sender.imageName)
                         .frame(width: 30, height: 30, alignment: .center)
                         .clipShape(Circle())
                 } else {
