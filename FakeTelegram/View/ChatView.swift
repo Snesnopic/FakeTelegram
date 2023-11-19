@@ -14,9 +14,7 @@ struct ChatView: View {
         NavigationStack {
             VStack {
                 List {
-                    ForEach(chat.messages.sorted(by: { chat1, chat2 in
-                        return chat1.date < chat2.date
-                    }).indices, id: \.self) { index in
+                    ForEach(chat.messages.indices, id: \.self) { index in
                         MessageView(chatType: chat.chatType,
                                     currentMessage: chat.messages[index],
                                     isLastMessageInColumn: isLastMessageInColumn(index:
@@ -36,9 +34,7 @@ struct ChatView: View {
                     Button(action: {
                         if !typingMessage.isEmpty {
                             chat.messages.append(Message(sender: myself, message: typingMessage, date: Date()))
-                            chat.messages.sort( by: { chat1, chat2 in
-                                return chat1.date < chat2.date
-                            })
+                            chat.messages.sort()
                             typingMessage = ""
                         }
                     }) {
