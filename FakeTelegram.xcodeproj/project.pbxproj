@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D19FBF62B064F9F00894623 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D19FBF52B064F9F00894623 /* Contact.swift */; };
+		9D1D27472B0A95B1003E7FF0 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D27462B0A95B1003E7FF0 /* ContactsView.swift */; };
 		9D5B24AD2B03BE4300826669 /* RectangularContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5B24AC2B03BE4300826669 /* RectangularContactView.swift */; };
 		9D7D8C1E2B035EFA008F9299 /* ChatTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */; };
 		9DC49CD02B04D6E7003D402B /* ContentMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC49CCF2B04D6E7003D402B /* ContentMessageView.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		9D19FBF52B064F9F00894623 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		9D1D27462B0A95B1003E7FF0 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		9D5B24AC2B03BE4300826669 /* RectangularContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularContactView.swift; sourceTree = "<group>"; };
 		9D7D8C1D2B035EFA008F9299 /* ChatTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTypeEnum.swift; sourceTree = "<group>"; };
 		9DC49CCF2B04D6E7003D402B /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				9DC49CCF2B04D6E7003D402B /* ContentMessageView.swift */,
 				9DC49CD12B04D9BC003D402B /* MessageView.swift */,
 				9DC49CD32B04F4AC003D402B /* ChatView.swift */,
+				9D1D27462B0A95B1003E7FF0 /* ContactsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				9DC49CD92B04FF90003D402B /* ConditionalModifier.swift in Sources */,
 				9D7D8C1E2B035EFA008F9299 /* ChatTypeEnum.swift in Sources */,
 				9DDA59002B023589005ED1CA /* FakeTelegramApp.swift in Sources */,
+				9D1D27472B0A95B1003E7FF0 /* ContactsView.swift in Sources */,
 				9DC49CD02B04D6E7003D402B /* ContentMessageView.swift in Sources */,
 				9D5B24AD2B03BE4300826669 /* RectangularContactView.swift in Sources */,
 			);
