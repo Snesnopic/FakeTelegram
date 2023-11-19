@@ -33,7 +33,7 @@ struct ChatListView: View {
                 return searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
                 chat.contact.name.lowercased().contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())
             }.sorted(by: { chat1, chat2 in
-                return chat1.getLastMessage()!.date > chat2.getLastMessage()!.date
+                return chat1.getLastMessage() > chat2.getLastMessage()
             })) { chat in
                 NavigationLink {
                     ChatView(chat: chat)
