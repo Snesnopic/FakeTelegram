@@ -14,10 +14,10 @@ struct RectangularContactView: View {
             chat.getImage().frame(width: 60, height: 60).clipShape(Circle())
             VStack(alignment: .leading) {
                 Text(chat.contact.name).bold()
-                if chat.chatType != .personal && chat.getLastMessage() != nil {
-                    Text(chat.getLastMessage()!.sender.name)
+                if chat.chatType != .personal {
+                    Text(chat.getLastMessage().sender.name)
                 }
-                Text(chat.getLastMessage()!.message).opacity(0.4)
+                Text(chat.getLastMessage().message).opacity(0.4)
             }
             Spacer(minLength: 3)
             VStack(alignment: .trailing) {
@@ -30,7 +30,7 @@ struct RectangularContactView: View {
                             }
                         }
                     }
-                    Text("\(chat.getLastMessage()!.getFormattedDate())").opacity(0.5)
+                    Text("\(chat.getLastMessage().getFormattedDate())").opacity(0.5)
                 }
                 Text("\(chat.unreadMessages)").padding(5).foregroundStyle(
                     chat.unreadMessages != 0 ? Color(UIColor.systemBackground) :  Color.clear).background(Circle()
