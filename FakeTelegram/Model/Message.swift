@@ -6,7 +6,11 @@
 //
 
 import Foundation
-class Message: Hashable {
+class Message: Hashable, Comparable {
+    static func < (lhs: Message, rhs: Message) -> Bool {
+        return lhs.date < rhs.date
+    }
+    
     static func == (lhs: Message, rhs: Message) -> Bool {
         return lhs.sender == rhs.sender && lhs.message == rhs.message && lhs.date == rhs.date
     }
