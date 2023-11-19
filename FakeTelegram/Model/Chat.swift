@@ -28,7 +28,7 @@ class Chat: Identifiable {
             return Message(sender: Contact(name: "",imageName: nil), message: "", date: dateCreated)
         } else {
             messages.sort()
-            return messages[0]
+            return messages[messages.endIndex - 1]
         }
     }
     func getImage() -> Image {
