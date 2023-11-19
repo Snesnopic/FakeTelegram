@@ -6,27 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ChatListView: View {
-
-    @State private var chats: [Chat] = [
-        Chat(seenByOther: true, unreadMessages: 0, chatType: .personal, contact: Contact(name: "Gianluca"), messages: [Message(sender: Contact(name: "Gianluca"), message: "Ciao", date: Date())]),
-
-        Chat(seenByOther: false, unreadMessages: 3, chatType: .channel, contact:
-                Contact(name: "Meme channel"), messages: [Message(sender:
-                Contact(name: "Meme channel"), message: "Wassup", date: Date())]),
-
-        Chat(seenByOther: false, unreadMessages: 3, chatType: .group, contact:
-                Contact(name: "Uscite sabato"), messages: [Message(sender: myself, message: "Ciao, come stai?", date: Date()), Message(sender:
-                Contact(name: "Salvatore"), message: "Alle 9 da Cibus", date: Date())])]
-    
-    init() {
-        chats.sort { chat1, chat2 in
-            return chat1.getLastMessage() > chat2.getLastMessage()
-        }
-    }
-
+    @Query private var chats: [Chat]
     @State private var searchText = ""
+    @Environment(\.modelContext) var modelContext
+
     var body: some View {
         NavigationStack {
             List(chats.filter { chat in

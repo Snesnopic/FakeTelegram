@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct FakeTelegramApp: App {
@@ -19,6 +20,6 @@ struct FakeTelegramApp: App {
                 ChatListView().tabItem { Label("Settings", systemImage: "gear") }.tag(2)
             }
         }
-
+        .modelContainer(for: [Chat.self,Contact.self,Message.self])
     }
 }

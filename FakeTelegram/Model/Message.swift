@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import SwiftData
+
+@Model
 class Message: Hashable, Comparable {
     static func < (lhs: Message, rhs: Message) -> Bool {
         return lhs.date < rhs.date
@@ -34,4 +37,3 @@ class Message: Hashable, Comparable {
         return dateFormatter.string(from: date)
     }
 }
-let myself: Contact = Contact(name: "me")

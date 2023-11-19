@@ -7,7 +7,9 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
+@Model
 class Chat: Identifiable {
     var seenByOther: Bool
     var unreadMessages: Int

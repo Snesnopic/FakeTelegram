@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ChatTypeEnum: String {
+enum ChatTypeEnum: String, Codable{
     case personal = "Personal"
     case channel = "Channel"
     case group = "Group"
