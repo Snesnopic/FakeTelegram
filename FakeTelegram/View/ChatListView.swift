@@ -96,7 +96,8 @@ struct ChatListView: View {
             .searchable(text: $searchText)
             .navigationTitle("Chats")
             .navigationBarTitleDisplayMode(.inline)
-        }.badge(chats.reduce(0) { result, chat in
+        }
+        .badge(chats.reduce(0) { result, chat in
             result + chat.unreadMessages
         })
     }
