@@ -17,7 +17,8 @@ struct FakeTelegramApp: App {
                 ContactsView().tabItem { Label("Contacts", systemImage: "person.crop.circle") }
                                     .background(.gray).tag(0)
                 ChatListView().tabItem { Label("Chat", systemImage: "bubble.left.and.bubble.right.fill") }.tag(1)
-                ChatListView().tabItem { Label("Settings", systemImage: "gear") }.tag(2)
+                
+                //                ChatListView().tabItem { Label("Settings", systemImage: "gear") }.tag(2)
             }
         }
         .modelContainer(for: [Chat.self,Contact.self,Message.self])
