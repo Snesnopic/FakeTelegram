@@ -77,7 +77,7 @@ struct ChatListView: View {
                 }
             }
             .listStyle(.plain)
-            .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .navigationBar)
+            .toolbarBackground(Color(UIColor.secondarySystemBackground), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .searchable(text: $searchText)
             .navigationTitle("Chats")
