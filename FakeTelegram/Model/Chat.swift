@@ -17,7 +17,7 @@ class Chat: Identifiable {
     @Relationship var contact: Contact
     @Relationship var messages: [Message] = []
     var dateCreated: Date
-    init(seenByOther: Bool = false, unreadMessages: Int = 0, chatType: ChatTypeEnum = .personal, contact: Contact = Contact(name: "Unkown contact"), messages: [Message] = [],dateCreated: Date = Date()) {
+    init(seenByOther: Bool = false, unreadMessages: Int = 0, chatType: ChatTypeEnum = .personal, contact: Contact, messages: [Message] = [],dateCreated: Date = Date()) {
         self.seenByOther = seenByOther
         self.unreadMessages = unreadMessages
         self.chatType = chatType
