@@ -10,7 +10,7 @@ import SwiftData
 
 struct ContactsView: View {
     @State var searchText = ""
-    @Query(filter: #Predicate<Contact> { !$0.name.contains("me") },
+    @Query(filter: #Predicate<Contact> { !($0.name == "me") },
            sort: [SortDescriptor(\Contact.name)] ) var contacts: [Contact]
     @Environment(\.modelContext) var modelContext
     var body: some View {
