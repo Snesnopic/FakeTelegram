@@ -30,7 +30,6 @@ struct MessageView: View {
                         .clipShape(Circle()).background(Circle().frame(width: 30, height: 30).foregroundStyle(.background))
                 }
             }
-
             ContentMessageView(sender: currentMessage.sender!, messageContent: currentMessage.message)
             .if(isLastMessageInColumn, transform: { cmv in
                 cmv.clipShape(ChatBubbleShape(direction: currentMessage.sender!.isMyself ? .right : .left))
