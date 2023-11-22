@@ -53,8 +53,8 @@ struct ChatListView: View {
                         chat.isMuted.toggle()
                     }, label: {
                         VStack {
-                            Image(systemName: "speaker.slash.fill")
-                            Text("Mute").font(.footnote)
+                            Image(systemName: chat.isMuted ? "speaker.wave.3.fill" : "speaker.slash.fill")
+                            Text(chat.isMuted ? "Unmute" : "Mute")
                         }}).tint(.orange)
                 }
                 .swipeActions(edge: .leading) {
