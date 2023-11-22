@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Message: Comparable {
+class Message {
     var message: String
     var date: Date
     var sender: Contact?
@@ -22,8 +22,5 @@ class Message: Comparable {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: date)
-    }
-    static func < (lhs: Message, rhs: Message) -> Bool {
-        return lhs.date < rhs.date
     }
 }
