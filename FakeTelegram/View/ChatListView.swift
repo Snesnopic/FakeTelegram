@@ -94,15 +94,44 @@ struct ChatListView: View {
         })
         .badge(chats.reduce(0) { result, chat in
             result + chat.unreadMessages
-        })
+        }).onAppear {
+            ensureContactsExists()
+            ensureContactsHaveChats()
+        }
     }
     func ensureContactsHaveChats(){
-        print(chats.count)
-        if chats.isEmpty {
+        if chats.count - 1 == 0 {
             for contact in contacts {
-                let chat = Chat(seenByOther: false, unreadMessages: 0, chatType: .personal, contact: nil, messages: [], dateCreated: .now)
+                let chat = Chat(name: contact.name, seenByOther: false, unreadMessages: 0, chatType: .personal, contact: nil, messages: [], dateCreated: .now)
                 contact.createdChats.append(chat)
                 modelContext.insert(chat)
+            }
+        }
+    }
+    func ensureContactsExists() {
+        if contacts.isEmpty {
+            do{
+                let marcoContact = Contact(name: "Marco")
+                modelContext.insert(marcoContact)
+                let ascanioContact = Contact(name: "Ascanio")
+                modelContext.insert(ascanioContact)
+                let matteoContact = Contact(name: "Matteo")
+                modelContext.insert(matteoContact)
+                let elisaContact = Contact(name: "Elisa")
+                modelContext.insert(elisaContact)
+                let gianlucaContact = Contact(name: "Gianluca")
+                modelContext.insert(gianlucaContact)
+                let salvatoreContact = Contact(name: "Salvatore")
+                modelContext.insert(salvatoreContact)
+                let ascanioGroup = Chat(name: "Ascanio name lovers", seenByOther: true, unreadMessages: 3, chatType: .personal, contact: nil, messages: [], dateCreated: .now)
+                salvatoreContact.createdChats.append(ascanioGroup)
+                modelContext.insert(ascanioGroup)
+                let myself = Contact(name: "me",isMyself: true)
+                modelContext.insert(myself)
+                try modelContext.save()
+            }
+            catch{
+                fatalError("\(error)")
             }
         }
     }
