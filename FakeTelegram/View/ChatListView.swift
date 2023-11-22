@@ -18,7 +18,15 @@ struct ChatListView: View {
             List(chats.filter { chat in
                 return searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
                 chat.contact!.name.lowercased().contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())
-            })
+            }.sorted(by: { chat1, chat2 in
+                if !chat1.messages.isEmpty {
+                    if !chat2.messages.isEmpty {
+                        return chat1.messages.last!.date > chat2.messages.last!.date
+                    }
+                    return true
+                }
+                return false
+            }))
              { chat in
                 NavigationLink {
                     ChatView(chat: chat)
