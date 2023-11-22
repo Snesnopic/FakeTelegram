@@ -34,7 +34,7 @@ struct ChatListView: View {
                     RectangularContactView(chat: chat)
                 }
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-                .frame(height: 70)
+                .frame(height: 60)
                 .swipeActions(edge: .trailing) {
                     if chat.chatType != .personal {
                         Button(action: {}, label: {
@@ -56,7 +56,14 @@ struct ChatListView: View {
                         }}).tint(.orange)
                 }
                 .swipeActions(edge: .leading) {
-                    Button(action: {}, label: {
+                    Button(action: {
+                        if chat.unreadMessages != 0 {
+                            chat.unreadMessages = 0
+                        }
+                        else {
+                            chat.unreadMessages = 1
+                        }
+                    }, label: {
                         VStack {
                             Image(systemName: chat.unreadMessages != 0 ? "message.fill" : "message.badge.filled.fill")
                             Text(chat.unreadMessages != 0 ? "Read" : "Unread")
