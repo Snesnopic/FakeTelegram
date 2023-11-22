@@ -16,14 +16,11 @@ struct RectangularContactView: View {
         HStack(alignment: .center) {
             chat.getImage().frame(width: 60, height: 60).clipShape(Circle())
             VStack(alignment: .leading) {
-                Text(chat.contact!.name).bold()
-                if chat.chatType != .personal {
-                    if !chat.messages.isEmpty {
-                        Text(chat.messages.last!.sender!.name)
-                        Text(chat.messages.last!.message)
-                    }
-                }
+                Text(chat.name).bold()
                 if !chat.messages.isEmpty {
+                    if chat.chatType != .personal {
+                        Text(chat.messages.last!.sender!.name)
+                    }
                     Text(chat.messages.last!.message).opacity(0.4)
                 }
             }
