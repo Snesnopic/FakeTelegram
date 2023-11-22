@@ -13,11 +13,23 @@ struct ChatView: View {
     @Bindable var chat: Chat
     @State private var typingMessage: String = ""
     @Environment(\.modelContext) var modelContext
+    let dateFormatter = DateFormatter()
+    init(chat: Chat) {
+        dateFormatter.dateFormat = "MMMM d"
+        self.chat = chat
+    }
     var body: some View {
         NavigationStack {
             VStack {
                 List {
                     ForEach(chat.messages) { message in
+                        if chat.messages.first! == message {
+                            HStack (alignment: .center) {
+                                Spacer()
+                                Text(dateFormatter.string(from: message.date)).foregroundStyle(.background).padding(.horizontal, 10).background(RoundedRectangle(cornerRadius: 25)).foregroundStyle(.gray.opacity(0.3))
+                                Spacer()
+                            }.listRowBackground(Color.clear)
+                        }
                         MessageView(chatType: chat.chatType,
                                     currentMessage: message,
                                     isLastMessageInColumn: isLastMessageInColumn(message: message), imageName: message.sender!.imageName)
@@ -50,7 +62,8 @@ struct ChatView: View {
                             .frame(width: 30, height: 30)
                     }
                 }.padding().background(Color(UIColor.systemBackground).opacity(0.8))
-            }.background(Image("background")).navigationTitle(chat.contact!.name)
+            }.background(Image("background"))
+                .navigationTitle(chat.name)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(.hidden, for: .tabBar)
                 .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .navigationBar)
