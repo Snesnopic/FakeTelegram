@@ -19,6 +19,7 @@ class Chat: Identifiable {
     @Relationship(deleteRule: .cascade,inverse: \Message.chat)
     var messages: [Message] = []
     var dateCreated: Date = Date.now
+    var isMuted: Bool = false
     
     init(name: String, seenByOther: Bool, unreadMessages: Int, chatType: ChatTypeEnum, contact: Contact?, messages: [Message], dateCreated: Date) {
         self.name = name

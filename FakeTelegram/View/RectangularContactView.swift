@@ -41,7 +41,7 @@ struct RectangularContactView: View {
                 }
                 Text("\(chat.unreadMessages)").padding(5).foregroundStyle(
                     chat.unreadMessages != 0 ? Color(UIColor.systemBackground) :  Color.clear).background(Circle()
-                    .foregroundStyle(chat.unreadMessages != 0 ? .blue :  Color.clear))
+                    .foregroundStyle(chat.unreadMessages != 0 ? (chat.isMuted ? .gray : .blue) :  Color.clear))
             }
         }
     }

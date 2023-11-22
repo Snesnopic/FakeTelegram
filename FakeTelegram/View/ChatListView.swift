@@ -49,7 +49,9 @@ struct ChatListView: View {
                             Image(systemName: "trash.fill")
                             Text("Delete")
                         }})
-                    Button(action: {}, label: {
+                    Button(action: {
+                        chat.isMuted.toggle()
+                    }, label: {
                         VStack {
                             Image(systemName: "speaker.slash.fill")
                             Text("Mute").font(.footnote)
