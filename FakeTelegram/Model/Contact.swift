@@ -11,12 +11,18 @@ import SwiftData
 class Contact: Equatable {
     @Attribute(.unique) var name: String
     var imageName: String
+    var isMyself: Bool
+    @Relationship(deleteRule: .cascade, inverse: \Chat.contact)
+    var createdChats: [Chat] = []
+    @Relationship(deleteRule: .cascade, inverse: \Message.sender)
+    var createdMessages: [Message] = []
     static func == (lhs: Contact, rhs: Contact) -> Bool {
         return lhs.name == rhs.name && lhs.imageName == rhs.imageName
     }
-    init(name: String, imageName: String = "DEFAULTIMAGE") {
+    init(name: String, imageName: String = "DEFAULTIMAGE", isMyself: Bool = false) {
         self.name = name
         self.imageName = imageName
+        self.isMyself = isMyself
     }
     init(name: String) {
         self.name = name
@@ -30,7 +36,6 @@ class Contact: Equatable {
         } else {
             self.imageName = "DEFAULTIMAGE"
         }
+        isMyself = false
     }
 }
-
-let myself: Contact = Contact(name: "me")

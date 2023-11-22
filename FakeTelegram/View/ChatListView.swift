@@ -9,18 +9,17 @@ import SwiftUI
 import SwiftData
 
 struct ChatListView: View {
-    @Query private var chats: [Chat]
+    @Query var chats: [Chat]
+    @Query(filter: #Predicate<Contact> { !($0.isMyself) }) var contacts: [Contact]
     @State private var searchText = ""
     @Environment(\.modelContext) var modelContext
-
     var body: some View {
         NavigationStack {
             List(chats.filter { chat in
                 return searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-                chat.contact.name.lowercased().contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())
-            }.sorted(by: { chat1, chat2 in
-                return chat1.getLastMessage() > chat2.getLastMessage()
-            })) { chat in
+                chat.contact!.name.lowercased().contains(searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased())
+            })
+             { chat in
                 NavigationLink {
                     ChatView(chat: chat)
                 } label: {
@@ -82,13 +81,26 @@ struct ChatListView: View {
             .searchable(text: $searchText)
             .navigationTitle("Chats")
             .navigationBarTitleDisplayMode(.inline)
-        }
+        }.onAppear(perform: {
+            ensureContactsHaveChats()
+        })
         .badge(chats.reduce(0) { result, chat in
             result + chat.unreadMessages
         })
     }
+    func ensureContactsHaveChats(){
+        print(chats.count)
+        if chats.isEmpty {
+            for contact in contacts {
+                let chat = Chat(seenByOther: false, unreadMessages: 0, chatType: .personal, contact: nil, messages: [], dateCreated: .now)
+                contact.createdChats.append(chat)
+                modelContext.insert(chat)
+            }
+        }
+    }
 }
+   
 
-#Preview {
-    ChatListView()
-}
+//#Preview {
+//    ChatListView()
+//}

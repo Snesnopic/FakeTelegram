@@ -6,19 +6,21 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ChatView: View {
-    @State var chat: Chat
+    @Query(filter: #Predicate<Contact> { $0.isMyself }) var myself: [Contact]
+    @Bindable var chat: Chat
     @State private var typingMessage: String = ""
+    @Environment(\.modelContext) var modelContext
     var body: some View {
         NavigationStack {
             VStack {
                 List {
-                    ForEach(chat.messages.indices, id: \.self) { index in
+                    ForEach(chat.messages) { message in
                         MessageView(chatType: chat.chatType,
-                                    currentMessage: chat.messages[index],
-                                    isLastMessageInColumn: isLastMessageInColumn(index:
-                                    index))
+                                    currentMessage: message,
+                                    isLastMessageInColumn: isLastMessageInColumn(message: message), imageName: message.sender!.imageName)
                         .listRowInsets(EdgeInsets(.zero))
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
@@ -32,10 +34,15 @@ struct ChatView: View {
                         .textFieldStyle(.roundedBorder)
                         .frame(minHeight: 30)
                     Button(action: {
-                        if !typingMessage.isEmpty {
-                            chat.messages.append(Message(sender: myself, message: typingMessage, date: Date()))
-                            chat.messages.sort()
-                            typingMessage = ""
+                        let newMessage = Message(message: typingMessage, date: .now)
+                        myself[0].createdMessages.append(newMessage)
+                        chat.messages.append(newMessage)
+                        modelContext.insert(newMessage)
+                        do{
+                            try modelContext.save()
+                        }
+                        catch {
+                            print("\(error)")
                         }
                     }) {
                         Image(systemName: "arrow.up.circle.fill")
@@ -43,7 +50,7 @@ struct ChatView: View {
                             .frame(width: 30, height: 30)
                     }
                 }.padding().background(Color(UIColor.systemBackground).opacity(0.8))
-            }.background(Image("background")).navigationTitle(chat.contact.name)
+            }.background(Image("background")).navigationTitle(chat.contact!.name)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(.hidden, for: .tabBar)
                 .toolbarBackground(Color(UIColor.systemBackground).opacity(0.03), for: .navigationBar)
@@ -55,16 +62,17 @@ struct ChatView: View {
                 }
         }
     }
-    func isLastMessageInColumn(index: Int) -> Bool {
+    func isLastMessageInColumn(message: Message) -> Bool {
+        let index = chat.messages.firstIndex(of: message)!
         if index == (chat.messages.count - 1) {
             return true
         }
         return chat.messages[index].sender != chat.messages[index + 1].sender
     }
 }
-
-#Preview {
-    let messages = [Message(sender: Contact(name: "Gianluca"), message: "Questa è una risposta",
-    date: Date()), Message(sender: myself, message: "Ciao!", date: Date())]
-    return ChatView(chat: Chat(seenByOther: true, unreadMessages: 2, chatType: .group, contact: Contact(name: "Gianluca"), messages: messages))
-}
+//
+//#Preview {
+//    let messages = [Message(sender: Contact(name: "Gianluca"), message: "Questa è una risposta",
+//                            date: Date()), Message(sender: myself, message: "Ciao!", date: Date())]
+//    return ChatView(chat: Chat(seenByOther: true, unreadMessages: 2, chatType: .group, contact: Contact(name: "Gianluca"), messages: messages))
+//}

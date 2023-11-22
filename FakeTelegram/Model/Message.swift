@@ -9,12 +9,12 @@ import Foundation
 import SwiftData
 
 @Model
-class Message: Hashable, Comparable {
-    var sender: Contact
+class Message: Comparable {
     var message: String
     var date: Date
-    init(sender: Contact, message: String, date: Date) {
-        self.sender = sender
+    var sender: Contact?
+    var chat:Chat?
+    init(message: String, date: Date) {
         self.message = message
         self.date = date
     }
@@ -25,13 +25,5 @@ class Message: Hashable, Comparable {
     }
     static func < (lhs: Message, rhs: Message) -> Bool {
         return lhs.date < rhs.date
-    }
-    static func == (lhs: Message, rhs: Message) -> Bool {
-        return lhs.sender == rhs.sender && lhs.message == rhs.message && lhs.date == rhs.date
-    }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(sender.name)
-        hasher.combine(message)
-        hasher.combine(date)
     }
 }

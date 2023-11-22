@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct ContentMessageView: View {
-    var sender: Contact?
+    var sender: Contact
     var messageContent: String
-    var isCurrentUser: Bool
     var body: some View {
         VStack(alignment: .leading) {
-            if sender != nil && sender != myself {
-                Text(sender!.name).foregroundStyle(.blue)
+            if sender.isMyself {
+                Text(sender.name).foregroundStyle(.blue)
             }
             Text(messageContent)
         }.padding(10)
-            .foregroundColor(isCurrentUser ? Color.white : Color(UIColor.label))
-            .background(isCurrentUser ? Color.blue : Color(UIColor.systemBackground))
+            .foregroundColor(sender.isMyself ? Color.white : Color(UIColor.label))
+            .background(sender.isMyself ? Color.blue : Color(UIColor.systemBackground))
     }
 }
-
-#Preview {
-    ContentMessageView(messageContent: "Ciao!", isCurrentUser: false)
-}
+//
+//#Preview {
+//    ContentMessageView(messageContent: "Ciao!")
+//}
