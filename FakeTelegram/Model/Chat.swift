@@ -11,15 +11,17 @@ import SwiftData
 
 @Model
 class Chat: Identifiable {
-    var seenByOther: Bool
-    var unreadMessages: Int
+    var name: String
+    var seenByOther: Bool = false
+    var unreadMessages: Int = 0
     var chatType: ChatTypeEnum
-    var contact: Contact?
+    var contact: Contact? = nil
     @Relationship(deleteRule: .cascade,inverse: \Message.chat)
     var messages: [Message] = []
-    var dateCreated: Date
+    var dateCreated: Date = Date.now
     
-    init(seenByOther: Bool = false, unreadMessages: Int = 0, chatType: ChatTypeEnum = .personal, contact: Contact?, messages: [Message] = [],dateCreated: Date = Date()) {
+    init(name: String, seenByOther: Bool, unreadMessages: Int, chatType: ChatTypeEnum, contact: Contact?, messages: [Message], dateCreated: Date) {
+        self.name = name
         self.seenByOther = seenByOther
         self.unreadMessages = unreadMessages
         self.chatType = chatType
@@ -27,14 +29,7 @@ class Chat: Identifiable {
         self.messages = messages
         self.dateCreated = dateCreated
     }
-    init(seenByOther: Bool = false, unreadMessages: Int = 0, chatType: ChatTypeEnum = .personal, contact: Contact, messages: [Message] = [],dateCreated: Date = Date()) {
-        self.seenByOther = seenByOther
-        self.unreadMessages = unreadMessages
-        self.chatType = chatType
-        self.contact = contact
-        self.messages = messages
-        self.dateCreated = dateCreated
-    }
+    
     func getImage() -> Image {
         if contact!.imageName != "DEFAULTIMAGE" {
             return Image(contact!.imageName).resizable()
