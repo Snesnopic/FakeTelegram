@@ -12,7 +12,7 @@ struct ContentMessageView: View {
     var messageContent: String
     var body: some View {
         VStack(alignment: .leading) {
-            if sender.isMyself {
+            if !sender.isMyself {
                 Text(sender.name).foregroundStyle(.blue)
             }
             Text(messageContent)
