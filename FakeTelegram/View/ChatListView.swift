@@ -11,6 +11,7 @@ import SwiftData
 struct ChatListView: View {
     @Query var chats: [Chat]
     @Query(filter: #Predicate<Contact> { !($0.isMyself) }) var contacts: [Contact]
+    @Query(filter: #Predicate<Contact> { $0.isMyself }) var myself: [Contact]
     @State private var searchText = ""
     @Environment(\.modelContext) var modelContext
     var body: some View {
@@ -106,6 +107,46 @@ struct ChatListView: View {
         }).onAppear {
             ensureContactsExists()
             ensureContactsHaveChats()
+            ensureChatsHaveSomeMessages()
+        }
+    }
+    func ensureChatsHaveSomeMessages(){
+        for chat in chats {
+            if chat.name == "Gianluca" && chat.messages.isEmpty{
+                let newMessage = Message(message: "Hi Giuseppe, how are you?", date: .now)
+                chat.contact!.createdMessages.append(newMessage)
+                chat.messages.append(newMessage)
+                modelContext.insert(newMessage)
+                let newMessage2 = Message(message: "Gianluca, you still have to give me 50 euros...", date: .now)
+                myself[0].createdMessages.append(newMessage2)
+                chat.messages.append(newMessage2)
+                modelContext.insert(newMessage2)
+                do {
+                    try modelContext.save()
+                }
+                catch {
+                    fatalError("\(error)")
+                }
+            }
+            if chat.chatType == .group && chat.messages.isEmpty {
+                let newMessage = Message(message: "Guys, I love this name too much...", date: .now)
+                contacts[Int.random(in: 0...contacts.count - 1)].createdMessages.append(newMessage)
+                chat.messages.append(newMessage)
+                modelContext.insert(newMessage)
+                let newMessage2 = Message(message: "Seriously, it's the best!", date: .now)
+                contacts[Int.random(in: 0...contacts.count - 1)].createdMessages.append(newMessage2)
+                chat.messages.append(newMessage2)
+                modelContext.insert(newMessage2)
+                let newMessage3 = Message(message: "I will name my children Ascanio. I will, I swear.", date: .now)
+                myself[0].createdMessages.append(newMessage3)
+                chat.messages.append(newMessage3)
+                do {
+                    try modelContext.save()
+                }
+                catch {
+                    fatalError("\(error)")
+                }
+            }
         }
     }
     func ensureContactsHaveChats(){
@@ -132,11 +173,12 @@ struct ChatListView: View {
                 modelContext.insert(gianlucaContact)
                 let salvatoreContact = Contact(name: "Salvatore")
                 modelContext.insert(salvatoreContact)
-                let ascanioGroup = Chat(name: "Ascanio name lovers", seenByOther: true, unreadMessages: 3, chatType: .personal, contact: nil, messages: [], dateCreated: .now)
-                salvatoreContact.createdChats.append(ascanioGroup)
-                modelContext.insert(ascanioGroup)
+                let ascanioGroup = Chat(name: "Ascanio name lovers", seenByOther: true, unreadMessages: 3, chatType: .group, contact: nil, messages: [], dateCreated: .now)
+               
                 let myself = Contact(name: "me",isMyself: true)
                 modelContext.insert(myself)
+                myself.createdChats.append(ascanioGroup)
+                modelContext.insert(ascanioGroup)
                 try modelContext.save()
             }
             catch{
