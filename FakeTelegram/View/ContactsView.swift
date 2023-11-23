@@ -33,6 +33,7 @@ struct ContactsView: View {
                         Spacer()
                     }
                     .listRowInsets(.none)
+                    .accessibilityLabel("\(contact.name)")
                 }
                 .navigationTitle("Contacts")
                 .navigationBarTitleDisplayMode(.inline)

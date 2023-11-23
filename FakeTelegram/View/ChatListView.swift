@@ -34,6 +34,8 @@ struct ChatListView: View {
                 } label: {
                     RectangularContactView(chat: chat)
                 }
+                .accessibility(label: Text(chat.unreadMessages != 0 ? "\(chat.name) \(chat.unreadMessages) unread messages." : "\(chat.name)"))
+                .accessibilityRemoveTraits(.isSelected)
                 .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 .frame(height: 60)
                 .swipeActions(edge: .trailing) {
@@ -56,7 +58,7 @@ struct ChatListView: View {
                         VStack {
                             Image(systemName: chat.isMuted ? "speaker.wave.3.fill" : "speaker.slash.fill")
                             Text(chat.isMuted ? "Unmute" : "Mute")
-                        }}).tint(.orange)
+                        }}).tint(.orange).accessibilityLabel(chat.isMuted ? Text("Unmute chat") : Text("Mute chat"))
                 }
                 .swipeActions(edge: .leading) {
                     Button(action: {
@@ -85,12 +87,12 @@ struct ChatListView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {}, label: {
                         Image(systemName: "plus.square.dashed")
-                    })
+                    }).accessibilityLabel(Text("New story"))
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {}, label: {
                         Image(systemName: "square.and.pencil")
-                    })
+                    }).accessibilityLabel(Text("New chat"))
                 }
             }
             .listStyle(.plain)

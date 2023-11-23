@@ -29,27 +29,37 @@ struct ChatView: View {
                                 Text(dateFormatter.string(from: message.date)).foregroundStyle(.background).padding(.horizontal, 10).background(RoundedRectangle(cornerRadius: 25)).foregroundStyle(.gray.opacity(0.3))
                                 Spacer()
                             }.listRowBackground(Color.clear)
+                                .accessibilityLabel(Text("\(dateFormatter.string(from: message.date))"))
                         }
                         MessageView(chatType: chat.chatType,
                                     currentMessage: message,
                                     isLastMessageInColumn: isLastMessageInColumn(message: message), imageName: message.sender!.imageName)
-                        .listRowInsets(EdgeInsets(.zero))
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(Text("Message by \(message.sender!.name): \(message.message)"))
+
                     }
                 }.listStyle(.inset)
                     .scrollContentBackground(.hidden)
 
                 HStack {
-                    Image(systemName: "paperclip")
+                    Button(action: {}) {
+                        Image(systemName: "paperclip")
+                    }.accessibilityLabel(Text("Attach photo or video"))
+                   
                     TextField("Message...", text: $typingMessage)
                         .textFieldStyle(.roundedBorder)
                         .frame(minHeight: 30)
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(Text("Message text field"))
                     Button(action: {
                         let newMessage = Message(message: typingMessage, date: .now)
                         myself[0].createdMessages.append(newMessage)
                         chat.messages.append(newMessage)
                         modelContext.insert(newMessage)
+                        typingMessage = ""
                         do{
                             try modelContext.save()
                         }
@@ -60,9 +70,9 @@ struct ChatView: View {
                         Image(systemName: "arrow.up.circle.fill")
                             .resizable()
                             .frame(width: 30, height: 30)
-                    }
+                    }.accessibilityLabel(Text("Send message"))
                 }.padding().background(Color(UIColor.systemBackground).opacity(0.8))
-            }.background(Image("background"))
+            }.background(Image("background").accessibilityHidden(true))
                 .navigationTitle(chat.name)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar(.hidden, for: .tabBar)
@@ -71,6 +81,7 @@ struct ChatView: View {
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
                         chat.getImage().frame(width: 30, height: 30).clipShape(Circle()).font(.system(size: 12))
+                            .accessibilityHidden(true)
                     }
                 }
         }
